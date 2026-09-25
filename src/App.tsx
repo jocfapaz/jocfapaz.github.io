@@ -5,11 +5,13 @@ import viteLogo from './assets/vite.svg'
 import './App.css'  
 import Footer from './core/Footer.tsx'
 import Header from './core/Header.tsx'
+import Navegacion from './core/navegacion.tsx'
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
+    <Navegacion />
     <Header  />
       <section id="center">
         <div className="hero">
