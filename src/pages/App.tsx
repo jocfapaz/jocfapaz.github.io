@@ -3,9 +3,9 @@ import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'  
-import Footer from './core/Footer.tsx'
-import Header from './core/Header.tsx'
-import Navegacion from './core/navegacion.tsx'
+import Footer from '../core/Footer.tsx'
+import Header from '../core/Header.tsx'
+import Navegacion from '../core/Navegacion.tsx'
 function App() {
   const [count, setCount] = useState(0)
 
