@@ -2,7 +2,7 @@ import fotoPerfil from '../assets/foto.jpg';
 
 function Header() {
   return (
-    <header className="max-w-4xl mx-auto bg-slate-900 text-white py-10 px-8 rounded-2xl mb-8 shadow-xl border border-slate-800">
+    <header className="max-w-4xl mx-auto bg-slate-900 text-white py-10 px-8 rounded-2xl mb-8 shadow-xl border border-slate-800 mt-6">
       <div className="flex flex-col md:flex-row items-center gap-6">
         <img
           src={fotoPerfil}

@@ -5,10 +5,10 @@ import Footer from './Footer';
 
 export default function Root() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-slate-50">
       <Header />
       <Navegacion />
-      <main className="flex-1 w-full max-w-4xl mx-auto px-4">
+      <main className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6">
         <Outlet />
       </main>
       <Footer />

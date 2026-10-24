@@ -1,7 +1,7 @@
 import githubIcon from '../assets/github.svg'
 function Footer(){
     return(
-      <footer className="max-w-4xl mx-auto bg-slate-900 text-slate-400 py-8 px-6 mt-12 rounded-2xl border-t border-slate-800 shadow-lg">
+      <footer className="max-w-4xl mx-auto bg-slate-900 text-slate-400 py-8 px-6 mt-12 rounded-2xl border-t border-slate-800 shadow-lg mb-6">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm">
           <p className="text-center sm:text-left">
             © 2026 <span className="text-white font-medium">Josefa Roca</span>.
