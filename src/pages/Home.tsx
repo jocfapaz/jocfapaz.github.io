@@ -1,16 +1,23 @@
+import AboutMe from '../components/about/AboutMe';
+import Section from '../components/ui/Section';
+import ProjectsGrid from '../components/projects/ProjectsGrid';
+import { projects } from '../data/projects';
+
 export default function Home() {
+  const skills = [
+    'Lógica de programación y análisis',
+    'Trabajo en equipo colaborativo',
+    'Metodologías Ágiles (Scrum)',
+    'Adaptabilidad tecnológica'
+  ];
+
   return (
     <div className="space-y-8 w-full pb-8">
-      {/* Sección CV */}
-      <section id="cv" className="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 pb-2 border-b border-slate-100 dark:border-slate-800 flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-pink-500"></span>
-          Perfil Profesional
-        </h2>
-        <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
-          Estudiante de Ingeniería Informática motivada por el aprendizaje continuo y el desarrollo de soluciones tecnológicas. Destaco por mi capacidad para la resolución de problemas, adaptabilidad ante nuevos desafíos técnicos y habilidades de comunicación efectiva para el trabajo colaborativo en proyectos de software.
-        </p>
-
+      <Section id="sobre-mi" title="Sobre mí">
+        <AboutMe
+          bio="Estudiante de Ingeniería Informática motivada por el aprendizaje continuo y el desarrollo de soluciones tecnológicas. Destaco por mi capacidad para la resolución de problemas, adaptabilidad ante nuevos desafíos técnicos y habilidades de comunicación efectiva para el trabajo colaborativo en proyectos de software."
+          skills={skills}
+        />
         {/* Educación */}
         <div className="mt-8">
           <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Educación</h3>
@@ -27,26 +34,21 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </Section>
 
-        {/* Habilidades */}
-        <div className="mt-8">
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Habilidades</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div className="p-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/60 rounded-lg text-xs sm:text-sm text-slate-700 dark:text-slate-200 font-medium flex items-center gap-2">
-              <span className="text-pink-500 font-bold">✓</span> Lógica de programación y análisis
-            </div>
-            <div className="p-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/60 rounded-lg text-xs sm:text-sm text-slate-700 dark:text-slate-200 font-medium flex items-center gap-2">
-              <span className="text-pink-500 font-bold">✓</span> Trabajo en equipo colaborativo
-            </div>
-            <div className="p-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/60 rounded-lg text-xs sm:text-sm text-slate-700 dark:text-slate-200 font-medium flex items-center gap-2">
-              <span className="text-pink-500 font-bold">✓</span> Metodologías Ágiles (Scrum)
-            </div>
-            <div className="p-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/60 rounded-lg text-xs sm:text-sm text-slate-700 dark:text-slate-200 font-medium flex items-center gap-2">
-              <span className="text-pink-500 font-bold">✓</span> Adaptabilidad tecnológica
-            </div>
-          </div>
-        </div>
-      </section>
+      <Section id="proyectos" title="Proyectos">
+        <ProjectsGrid projects={projects} />
+      </Section>
+
+      {/* Sección CV */}
+      <section id="cv" className="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 pb-2 border-b border-slate-100 dark:border-slate-800 flex items-center gap-2">
+          <span className="w-2.5 h-2.5 rounded-full bg-pink-500"></span>
+          Perfil Profesional
+        </h2>
+        <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
+          Estudiante de Ingeniería Informática motivada por el aprendizaje continuo y el desarrollo de soluciones tecnológicas. Destaco por mi capacidad para la resolución de problemas, adaptabilidad ante nuevos desafíos técnicos y habilidades de comunicación efectiva para el trabajo colaborativo en proyectos de software.
+        </p>
 
       {/* Sección Certificaciones */}
       <section id="certificaciones" className="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors">

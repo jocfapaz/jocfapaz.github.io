@@ -10,6 +10,16 @@ function Navegacion() {
           </Link>
         </li>
         <li>
+          <a href="#sobre-mi" className="px-3 sm:px-4 py-2 rounded-full text-slate-700 dark:text-slate-200 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-pink-50 dark:hover:bg-slate-800 transition-all duration-200 block">
+            Sobre mí
+          </a>
+        </li>
+        <li>
+          <a href="#proyectos" className="px-3 sm:px-4 py-2 rounded-full text-slate-700 dark:text-slate-200 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-pink-50 dark:hover:bg-slate-800 transition-all duration-200 block">
+            Proyectos
+          </a>
+        </li>
+        <li>
           <a href="#cv" className="px-3 sm:px-4 py-2 rounded-full text-slate-700 dark:text-slate-200 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-pink-50 dark:hover:bg-slate-800 transition-all duration-200 block">
             Perfil & CV
           </a>
@@ -17,11 +27,6 @@ function Navegacion() {
         <li>
           <a href="#certificaciones" className="px-3 sm:px-4 py-2 rounded-full text-slate-700 dark:text-slate-200 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-pink-50 dark:hover:bg-slate-800 transition-all duration-200 block">
             Certificaciones
-          </a>
-        </li>
-        <li>
-          <a href="./pets.html" className="px-3 sm:px-4 py-2 rounded-full text-slate-700 dark:text-slate-200 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-pink-50 dark:hover:bg-slate-800 transition-all duration-200 block">
-            Mascotas
           </a>
         </li>
         <li>
