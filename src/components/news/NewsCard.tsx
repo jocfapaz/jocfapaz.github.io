@@ -1,5 +1,5 @@
 import Card from '../ui/Card';
-import type { NewsItem } from '../../data/news';
+import type { NewsItem } from '../../data/types';
 
 const dateFormatter = new Intl.DateTimeFormat('es-CL', {
   day: '2-digit',

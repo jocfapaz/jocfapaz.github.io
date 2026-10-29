@@ -1,0 +1,15 @@
+{
+  "name": "Josefa Roca Liberón",
+  "role": "Estudiante de Ingeniería Informática",
+  "tagline": "Apasionada por el desarrollo de software, resolución de problemas y aprendizaje continuo. Enfocada en construir soluciones eficientes e innovadoras.",
+  "bio": "Estudiante de Ingeniería Informática motivada por el aprendizaje continuo y el desarrollo de soluciones tecnológicas. Destaco por mi capacidad para la resolución de problemas, adaptabilidad ante nuevos desafíos técnicos y habilidades de comunicación efectiva para el trabajo colaborativo en proyectos de software.",
+  "skills": [
+    "Lógica de programación y análisis",
+    "Trabajo en equipo colaborativo",
+    "Metodologías Ágiles (Scrum)",
+    "Adaptabilidad tecnológica"
+  ],
+  "location": "Santiago, Chile",
+  "institution": "Duoc UC",
+  "availability": "Disponible para prácticas"
+}

@@ -1,7 +1,8 @@
-import ProjectCard, { type ProjectCardProps } from './ProjectCard';
+import ProjectCard from './ProjectCard';
+import type { Project } from '../../data/types';
 
 interface ProjectsGridProps {
-  projects: ProjectCardProps[];
+  projects: Project[];
 }
 
 export default function ProjectsGrid({ projects }: ProjectsGridProps) {
@@ -16,7 +17,15 @@ export default function ProjectsGrid({ projects }: ProjectsGridProps) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {projects.map((project) => (
-        <ProjectCard key={project.title} {...project} />
+        <ProjectCard
+          key={project.id}
+          title={project.title}
+          description={project.description}
+          tech={project.tech}
+          image={project.image}
+          demoUrl={project.demoUrl}
+          repoUrl={project.repoUrl}
+        />
       ))}
     </div>
   );

@@ -1,6 +1,6 @@
 import Section from '../ui/Section';
 import NewsList from './NewsList';
-import type { NewsItem } from '../../data/news';
+import type { NewsItem } from '../../data/types';
 
 interface NewsSectionProps {
   id?: string;

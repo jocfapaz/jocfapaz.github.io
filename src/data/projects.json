@@ -1,0 +1,9 @@
+[
+  {
+    "id": "veterinaria-san-marcos",
+    "title": "Veterinaria San Marcos",
+    "description": "Sitio web para clínica veterinaria con secciones informativas y servicios.",
+    "tech": ["HTML", "CSS", "JavaScript"],
+    "demoUrl": "https://jocfapaz.github.io/Veterinaria_San_Marcos.github.io/"
+  }
+]
