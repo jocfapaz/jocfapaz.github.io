@@ -1,0 +1,37 @@
+[
+  {
+    "id": "portafolio-profesional-renovado",
+    "title": "Portafolio profesional renovado",
+    "date": "2026-10-20",
+    "content": "Presento una nueva versión de mi portafolio personal, con una interfaz más clara, adaptable a dispositivos móviles y enfocada en mostrar mis proyectos y habilidades.",
+    "featured": true
+  },
+  {
+    "id": "certificacion-scrum-en-curso",
+    "title": "Certificación Scrum Product Owner en curso",
+    "date": "2026-09-30",
+    "content": "Actualmente me encuentro cursando la certificación profesional Scrum Product Owner en Duoc UC, profundizando en la gestión ágil de productos y equipos.",
+    "featured": true
+  },
+  {
+    "id": "proyecto-veterinaria-publicado",
+    "title": "Proyecto Veterinaria San Marcos publicado",
+    "date": "2026-08-18",
+    "content": "El sitio web de la clínica veterinaria San Marcos ya está disponible en línea, con secciones informativas y de servicios desarrolladas con HTML, CSS y JavaScript.",
+    "featured": false
+  },
+  {
+    "id": "taller-desarrollo-web",
+    "title": "Participación en taller de desarrollo web",
+    "date": "2026-07-05",
+    "content": "Formé parte de un taller práctico de desarrollo web donde reforcé mis conocimientos en maquetación, accesibilidad y buenas prácticas de frontend.",
+    "featured": false
+  },
+  {
+    "id": "inicio-ingenieria-informatica",
+    "title": "Inicio de Ingeniería Informática en Duoc UC",
+    "date": "2025-03-10",
+    "content": "Comencé mis estudios de Ingeniería Informática en Duoc UC, iniciando un camino de aprendizaje continuo en desarrollo de software y tecnología.",
+    "featured": false
+  }
+]

@@ -1,7 +1,9 @@
 import AboutMe from '../components/about/AboutMe';
 import Section from '../components/ui/Section';
 import ProjectsGrid from '../components/projects/ProjectsGrid';
+import NewsSection from '../components/news/NewsSection';
 import { projects } from '../data/projects';
+import { featuredNews, recentNews } from '../data/news';
 
 export default function Home() {
   const skills = [
@@ -40,6 +42,10 @@ export default function Home() {
         <ProjectsGrid projects={projects} />
       </Section>
 
+      <NewsSection id="noticias-destacadas" title="Noticias destacadas" items={featuredNews} />
+
+      <NewsSection id="noticias-recientes" title="Noticias recientes" items={recentNews} />
+
       {/* Sección CV */}
       <section id="cv" className="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 pb-2 border-b border-slate-100 dark:border-slate-800 flex items-center gap-2">
@@ -49,6 +55,7 @@ export default function Home() {
         <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
           Estudiante de Ingeniería Informática motivada por el aprendizaje continuo y el desarrollo de soluciones tecnológicas. Destaco por mi capacidad para la resolución de problemas, adaptabilidad ante nuevos desafíos técnicos y habilidades de comunicación efectiva para el trabajo colaborativo en proyectos de software.
         </p>
+      </section> {/* <-- AQUÍ FALTABA ESTE CIERRE */}
 
       {/* Sección Certificaciones */}
       <section id="certificaciones" className="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors">

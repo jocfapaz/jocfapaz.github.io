@@ -20,6 +20,11 @@ function Navegacion() {
           </a>
         </li>
         <li>
+          <a href="#noticias-destacadas" className="px-3 sm:px-4 py-2 rounded-full text-slate-700 dark:text-slate-200 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-pink-50 dark:hover:bg-slate-800 transition-all duration-200 block">
+            Noticias
+          </a>
+        </li>
+        <li>
           <a href="#cv" className="px-3 sm:px-4 py-2 rounded-full text-slate-700 dark:text-slate-200 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-pink-50 dark:hover:bg-slate-800 transition-all duration-200 block">
             Perfil & CV
           </a>
