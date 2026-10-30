@@ -1,3 +1,4 @@
+/// <reference types="jasmine" />
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Navegacion from '../../src/core/Navegacion';
@@ -14,9 +15,16 @@ describe('Navegacion', () => {
       </MemoryRouter>,
     );
 
+    // 1. Abrimos el menú hamburguesa para que los enlaces sean visibles en el test
+    const menuButton = screen.getByLabelText('Alternar menú');
+    fireEvent.click(menuButton);
+
     expect(screen.getByRole('navigation', { name: 'Navegación principal' })).toBeTruthy();
     expect(screen.getByRole('link', { name: 'Inicio' }).getAttribute('href')).toBe('/');
-    expect(screen.getByRole('link', { name: 'Contacto' }).getAttribute('href')).toBe('/contact');
+    
+    // 2. CORREGIDO: Ahora espera '/#contacto' en lugar de '/contact'
+    expect(screen.getByRole('link', { name: 'Contacto' }).getAttribute('href')).toBe('/#contacto');
+    
     expect(screen.getByRole('link', { name: /Sobre/ }).getAttribute('href')).toBe('/#sobre-mi');
     expect(screen.getByRole('link', { name: 'Proyectos' }).getAttribute('href')).toBe(
       '/#proyectos',
@@ -37,6 +45,10 @@ describe('Navegacion', () => {
         <Navegacion />
       </MemoryRouter>,
     );
+
+    // Abrimos el menú hamburguesa para que el botón de tema sea visible
+    const menuButton = screen.getByLabelText('Alternar menú');
+    fireEvent.click(menuButton);
 
     const button = screen.getByRole('button', { name: 'Cambiar a tema oscuro' });
 

@@ -23,7 +23,7 @@ Portafolio profesional desarrollado con React, TypeScript y Vite. El contenido s
 
 | Contacto | Móvil |
 | --- | --- |
-| ![Página de contacto](docs/screenshots/contact.png) | ![Portafolio en móvil](docs/screenshots/mobile.png) |
+| ![Página de contacto](docs/screenshots/contacto.png) | ![Portafolio en móvil](docs/screenshots/mobile.png) |
 
 ## Características
 
