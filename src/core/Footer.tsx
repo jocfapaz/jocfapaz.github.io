@@ -38,9 +38,6 @@ function Footer({ contact }: FooterProps) {
               className="w-4 h-4"
             />
           </a>
-          <a href="#top" className="hover:text-pink-400 transition-colors">
-            Volver arriba
-          </a>
         </nav>
       </div>
     </footer>
