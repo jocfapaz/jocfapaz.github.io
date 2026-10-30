@@ -8,7 +8,9 @@ export interface PortfolioState {
   error: string | null;
 }
 
-export function usePortfolioData(): PortfolioState {
+type PortfolioLoader = () => Promise<PortfolioData>;
+
+export function usePortfolioData(loader: PortfolioLoader = loadPortfolio): PortfolioState {
   const [data, setData] = useState<PortfolioData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -16,7 +18,7 @@ export function usePortfolioData(): PortfolioState {
   useEffect(() => {
     let active = true;
 
-    loadPortfolio()
+    loader()
       .then((portfolio) => {
         if (active) {
           setData(portfolio);
@@ -40,7 +42,7 @@ export function usePortfolioData(): PortfolioState {
     return () => {
       active = false;
     };
-  }, []);
+  }, [loader]);
 
   return { data, loading, error };
 }
