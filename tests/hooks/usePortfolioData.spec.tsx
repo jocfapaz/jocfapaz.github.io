@@ -57,4 +57,48 @@ describe('usePortfolioData', () => {
     expect(screen.getByTestId('data').textContent).toBe('');
     expect(screen.getByTestId('error').textContent).toBe('Error de prueba');
   });
+
+  it('usa un mensaje genérico cuando el rechazo no es un Error', async () => {
+    const loader = jasmine.createSpy('loader').and.callFake(() => Promise.reject('fallo'));
+
+    render(<PortfolioProbe loader={loader} />);
+
+    await flushAsyncUpdates();
+
+    expect(screen.getByTestId('loading').textContent).toBe('false');
+    expect(screen.getByTestId('data').textContent).toBe('');
+    expect(screen.getByTestId('error').textContent).toContain('No se pudo cargar');
+  });
+
+  it('no actualiza el DOM si se desmonta antes de resolver', async () => {
+    let resolveLoader: (value: PortfolioData) => void = () => {};
+    const loader = () =>
+      new Promise<PortfolioData>((resolve) => {
+        resolveLoader = resolve;
+      });
+
+    const { unmount } = render(<PortfolioProbe loader={loader} />);
+
+    unmount();
+    resolveLoader(portfolioFixture);
+    await flushAsyncUpdates();
+
+    expect(screen.queryByTestId('data')).toBeNull();
+  });
+
+  it('no actualiza el DOM si se desmonta antes de rechazar', async () => {
+    let rejectLoader: (reason?: unknown) => void = () => {};
+    const loader = () =>
+      new Promise<PortfolioData>((_resolve, reject) => {
+        rejectLoader = reject;
+      });
+
+    const { unmount } = render(<PortfolioProbe loader={loader} />);
+
+    unmount();
+    rejectLoader(new Error('Error tardío'));
+    await flushAsyncUpdates();
+
+    expect(screen.queryByTestId('error')).toBeNull();
+  });
 });

@@ -35,6 +35,13 @@ describe('Home', () => {
     expect(screen.getByText('Fallo de carga')).toBeTruthy();
   });
 
+  it('muestra el mensaje de error por defecto cuando no hay datos ni error', () => {
+    renderHome({ data: null, loading: false, error: null });
+
+    expect(screen.getByRole('alert')).toBeTruthy();
+    expect(screen.getByText(/Intenta recargar/)).toBeTruthy();
+  });
+
   it('renderiza las secciones con los datos del portafolio', () => {
     const { profile, projects, news, certifications, contact, education } = portfolioFixture;
 

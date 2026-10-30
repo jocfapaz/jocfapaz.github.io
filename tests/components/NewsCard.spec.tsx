@@ -22,4 +22,22 @@ describe('NewsCard', () => {
     expect(time?.getAttribute('datetime')).toBe(news.date);
     expect(time?.textContent).toContain('2026');
   });
+
+  it('mantiene la fecha original cuando no es una fecha válida', () => {
+    const invalidDate = 'fecha-invalida';
+    const { container } = render(
+      <NewsCard
+        id="news-card-invalid"
+        title="Noticia con fecha inválida"
+        date={invalidDate}
+        content="Contenido"
+        featured={false}
+      />,
+    );
+
+    const time = container.querySelector('time');
+
+    expect(time?.getAttribute('datetime')).toBe(invalidDate);
+    expect(time?.textContent).toContain(invalidDate);
+  });
 });

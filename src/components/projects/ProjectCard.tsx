@@ -1,7 +1,7 @@
 import Card from '../ui/Card';
 import type { Project } from '../../data/types';
 
-export type ProjectCardProps = Omit<Project, 'id'>;
+export type ProjectCardProps = Omit<Project, 'id' | 'tech'> & { tech?: string[] };
 
 export default function ProjectCard({ title, description, tech = [], image, demoUrl, repoUrl }: ProjectCardProps) {
   return (

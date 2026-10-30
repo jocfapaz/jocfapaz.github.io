@@ -1,3 +1,9 @@
+const isCoverage = process.env.COVERAGE === 'true';
+
+const babelPlugins = isCoverage
+  ? [['istanbul', { exclude: ['**/src/main.tsx', '**/tests/**'] }]]
+  : [];
+
 const webpackConfig = {
   mode: 'development',
   devtool: 'inline-source-map',
@@ -17,6 +23,7 @@ const webpackConfig = {
               ['@babel/preset-react', { runtime: 'automatic' }],
               '@babel/preset-typescript',
             ],
+            plugins: babelPlugins,
           },
         },
       },
@@ -36,6 +43,7 @@ module.exports = function (config) {
       require('karma-jasmine'),
       require('karma-webpack'),
       require('karma-chrome-launcher'),
+      ...(isCoverage ? [require('karma-coverage')] : []),
     ],
     files: [
       'tests/setup.ts',
@@ -49,7 +57,25 @@ module.exports = function (config) {
     webpackMiddleware: {
       stats: 'errors-only',
     },
-    reporters: ['progress'],
+    reporters: isCoverage ? ['progress', 'coverage'] : ['progress'],
+    coverageReporter: {
+      dir: 'coverage',
+      subdir: '.',
+      reporters: [
+        { type: 'html' },
+        { type: 'text' },
+        { type: 'text-summary' },
+        { type: 'lcovonly', subdir: '.' },
+      ],
+      check: {
+        global: {
+          statements: 80,
+          branches: 70,
+          functions: 80,
+          lines: 80,
+        },
+      },
+    },
     browsers: ['ChromeHeadlessNoSandbox'],
     customLaunchers: {
       ChromeHeadlessNoSandbox: {

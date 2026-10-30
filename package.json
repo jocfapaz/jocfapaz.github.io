@@ -13,6 +13,8 @@
     "test:chrome": "karma start karma.conf.cjs --single-run --browsers ChromeHeadless",
     "test:edge": "karma start karma.edge.cjs --single-run --browsers ChromeHeadless",
     "test:all": "npm run test:chrome && npm run test:edge",
+    "clean:coverage": "node -e \"require('fs').rmSync('coverage',{recursive:true,force:true})\"",
+    "test:coverage": "npm run clean:coverage && karma start karma.coverage.cjs --single-run",
     "typecheck:test": "tsc -p tsconfig.test.json --noEmit"
   },
   "dependencies": {
@@ -37,6 +39,7 @@
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
     "babel-loader": "^9.2.1",
+    "babel-plugin-istanbul": "^8.0.0",
     "babel-plugin-react-compiler": "^1.0.0",
     "eslint": "^10.10.0",
     "eslint-plugin-react-hooks": "^7.1.1",
@@ -45,6 +48,7 @@
     "jasmine-core": "^4.6.1",
     "karma": "^6.4.4",
     "karma-chrome-launcher": "^3.2.0",
+    "karma-coverage": "^2.2.1",
     "karma-jasmine": "^5.1.0",
     "karma-webpack": "^5.0.1",
     "tailwindcss": "^4.3.3",
