@@ -1,78 +1,256 @@
-# React + TypeScript + Vite
+# Portafolio personal · Josefa Roca Liberón
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portafolio profesional desarrollado con React, TypeScript y Vite. El contenido se carga desde archivos JSON, incluye navegación entre secciones, vista de contacto y una suite de pruebas con Karma + Jasmine.
 
-Currently, two official plugins are available:
+- **Demo:** [https://jocfapaz.github.io/](https://jocfapaz.github.io/)
+- **Repositorio:** [https://github.com/jocfapaz/jocfapaz.github.io](https://github.com/jocfapaz/jocfapaz.github.io)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Capturas de pantalla
 
-## React Compiler
+### Página principal
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+![Página principal del portafolio](docs/screenshots/home-desktop.png)
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+### Proyectos y noticias
 
-## Expanding the ESLint configuration
+| Proyectos | Noticias destacadas |
+| --- | --- |
+| ![Sección de proyectos](docs/screenshots/home-projects.png) | ![Sección de noticias](docs/screenshots/home-news.png) |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Contacto y vista móvil
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+| Contacto | Móvil |
+| --- | --- |
+| ![Página de contacto](docs/screenshots/contact-desktop.png) | ![Portafolio en móvil](docs/screenshots/home-mobile.png) |
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Características
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Contenido centralizado en JSON: perfil, educación, proyectos, certificaciones, contacto y noticias.
+- Carga de datos mediante `usePortfolioData` y loaders asíncronos.
+- Navegación con React Router: `/` y `/contact`.
+- Secciones de inicio con anclas: `#sobre-mi`, `#proyectos`, `#noticias-destacadas`, `#noticias-recientes`, `#cv`, `#certificaciones` y `#contacto`.
+- Noticias separadas en **Destacadas** y **Recientes**, ordenadas por fecha.
+- Diseño responsive con Tailwind CSS.
+- Pruebas unitarias, de integración y de componentes con Karma + Jasmine.
+- Cobertura de código con `karma-coverage` e `istanbul`.
 
+## Tecnologías
+
+- React 19
+- TypeScript
+- Vite 8
+- React Router
+- Tailwind CSS 4
+- Karma
+- Jasmine
+- Testing Library
+- ESLint
+
+## Requisitos
+
+- Node.js 20.19+ (recomendado 22 o 24)
+- npm
+- Google Chrome y/o Microsoft Edge para ejecutar las pruebas
+
+## Instalación
+
+```bash
+git clone https://github.com/jocfapaz/jocfapaz.github.io.git
+cd jocfapaz.github.io
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## Ejecución
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Inicia el servidor de desarrollo:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm run dev
 ```
+
+Vite mostrará la URL local, normalmente `http://localhost:5173`.
+
+Para generar la versión de producción:
+
+```bash
+npm run build
+```
+
+Para previsualizar el resultado de producción:
+
+```bash
+npm run preview
+```
+
+## Pruebas
+
+| Comando | Descripción |
+| --- | --- |
+| `npm test` | Ejecuta todas las pruebas una vez en Chrome headless. |
+| `npm run test:chrome` | Ejecuta las pruebas en Chrome headless. |
+| `npm run test:edge` | Ejecuta las pruebas en Microsoft Edge headless. |
+| `npm run test:all` | Ejecuta la suite en Chrome y Edge. |
+| `npm run test:watch` | Ejecuta las pruebas en modo watch. |
+| `npm run typecheck:test` | Verifica los tipos de `src` y `tests`. |
+| `npm run lint` | Ejecuta ESLint. |
+| `npm run test:coverage` | Ejecuta las pruebas y genera el informe de cobertura. |
+
+Ejemplo de ejecución completa:
+
+```bash
+npm run lint
+npm run typecheck:test
+npm run test:all
+npm run build
+```
+
+### Cobertura
+
+El informe se genera en:
+
+```text
+coverage/index.html
+```
+
+Los umbrales configurados son:
+
+- Sentencias: 80%
+- Ramas: 70%
+- Funciones: 80%
+- Líneas: 80%
+
+Si Chrome o Edge no se detectan automáticamente, define la ruta del ejecutable:
+
+```powershell
+$env:CHROME_BIN = "C:\ruta\a\chrome.exe"
+$env:EDGE_BIN = "C:\ruta\a\msedge.exe"
+```
+
+En Windows, `karma.edge.cjs` busca Edge en las rutas habituales de instalación.
+
+## Estructura del proyecto
+
+```text
+.
+├── docs/
+│   ├── legacy/                 # Versión anterior del sitio
+│   └── screenshots/            # Capturas usadas en este README
+├── public/
+├── src/
+│   ├── assets/                 # Imágenes y recursos
+│   ├── components/
+│   │   ├── about/              # Sobre mí y educación
+│   │   ├── certifications/     # Certificaciones
+│   │   ├── contact/            # Información de contacto
+│   │   ├── news/               # Noticias destacadas y recientes
+│   │   ├── projects/           # Proyectos
+│   │   └── ui/                 # Componentes reutilizables
+│   ├── core/                   # Root, Header, Navegación y Footer
+│   ├── data/                   # JSON, tipos y selectores
+│   ├── hooks/                  # usePortfolioData
+│   ├── pages/                  # Home y Contact
+│   ├── services/               # Loaders del portafolio
+│   ├── index.css
+│   └── main.tsx
+├── tests/
+│   ├── components/
+│   ├── core/
+│   ├── data/
+│   ├── fixtures/
+│   ├── hooks/
+│   ├── integration/
+│   ├── pages/
+│   ├── services/
+│   └── setup.ts
+├── eslint.config.js
+├── karma.conf.cjs
+├── karma.coverage.cjs
+├── karma.edge.cjs
+├── package.json
+└── vite.config.ts
+```
+
+## Cómo actualizar el contenido
+
+Todo el contenido del portafolio vive en `src/data/`.
+
+### Agregar un proyecto
+
+Edita `src/data/projects.json`:
+
+```json
+[
+  {
+    "id": "mi-nuevo-proyecto",
+    "title": "Mi nuevo proyecto",
+    "description": "Descripción breve del proyecto.",
+    "tech": ["React", "TypeScript"],
+    "image": "/mi-proyecto.png",
+    "demoUrl": "https://example.com/demo",
+    "repoUrl": "https://github.com/usuario/mi-proyecto"
+  }
+]
+```
+
+Los campos `image`, `demoUrl` y `repoUrl` son opcionales.
+
+### Agregar una noticia
+
+Edita `src/data/news.json`:
+
+```json
+[
+  {
+    "id": "nueva-noticia",
+    "title": "Nueva noticia",
+    "date": "2026-10-29",
+    "content": "Contenido de la noticia.",
+    "featured": true
+  }
+]
+```
+
+- `featured: true` muestra la noticia en **Destacadas**.
+- `featured: false` o ausente la muestra en **Recientes**.
+- Las noticias se ordenan por fecha descendente.
+
+### Actualizar perfil y contacto
+
+- Perfil: `src/data/profile.json`
+- Educación: `src/data/education.json`
+- Certificaciones: `src/data/certifications.json`
+- Contacto: `src/data/contact.json`
+
+Los tipos esperados están definidos en `src/data/types.ts`.
+
+## Ejemplos de uso
+
+### Navegar por el portafolio
+
+- Inicio: `http://localhost:5173/`
+- Contacto: `http://localhost:5173/contact`
+- Proyectos: `http://localhost:5173/#proyectos`
+- Noticias: `http://localhost:5173/#noticias-destacadas`
+
+### Ejecutar una prueba específica
+
+Karma carga todos los archivos `tests/**/*.spec.tsx`. Para trabajar en una prueba concreta, usa el modo watch:
+
+```bash
+npm run test:watch
+```
+
+### Verificar la cobertura antes de publicar
+
+```bash
+npm run test:coverage
+```
+
+Luego abre `coverage/index.html` en el navegador.
+
+## Autor
+
+Josefa Roca Liberón
+
+- GitHub: [@jocfapaz](https://github.com/jocfapaz)
+- Portafolio: [https://jocfapaz.github.io/](https://jocfapaz.github.io/)
