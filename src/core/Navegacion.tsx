@@ -24,13 +24,13 @@ function Navegacion() {
     }
   }, [navigate]);
 
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [location.hash, location.pathname]);
-
   const isHomeActive = location.pathname === '/' && location.hash === '';
   const getHashClass = (hash: string) => 
     location.hash === hash ? activeLinkClass : '';
+
+  const handleLinkClick = () => {
+    setIsMenuOpen(false);
+  };
 
   return (
     <nav
@@ -56,37 +56,37 @@ function Navegacion() {
 
       <ul className={`${isMenuOpen ? 'flex' : 'hidden'} sm:flex flex-col sm:flex-row flex-wrap items-center justify-center gap-1 mt-3 sm:mt-0 text-sm font-medium text-slate-600 dark:text-slate-300 w-full sm:w-auto`}>
         <li className="w-full sm:w-auto text-center">
-          <Link to="/" className={`${linkClass} ${isHomeActive ? activeLinkClass : ''}`}>
+          <Link to="/" onClick={handleLinkClick} className={`${linkClass} ${isHomeActive ? activeLinkClass : ''}`}>
             Inicio
           </Link>
         </li>
         <li className="w-full sm:w-auto text-center">
-          <Link to="/#sobre-mi" className={`${linkClass} ${getHashClass('#sobre-mi')}`}>
+          <Link to="/#sobre-mi" onClick={handleLinkClick} className={`${linkClass} ${getHashClass('#sobre-mi')}`}>
             Sobre mí
           </Link>
         </li>
         <li className="w-full sm:w-auto text-center">
-          <Link to="/#proyectos" className={`${linkClass} ${getHashClass('#proyectos')}`}>
+          <Link to="/#proyectos" onClick={handleLinkClick} className={`${linkClass} ${getHashClass('#proyectos')}`}>
             Proyectos
           </Link>
         </li>
         <li className="w-full sm:w-auto text-center">
-          <Link to="/#noticias-destacadas" className={`${linkClass} ${getHashClass('#noticias-destacadas')}`}>
+          <Link to="/#noticias-destacadas" onClick={handleLinkClick} className={`${linkClass} ${getHashClass('#noticias-destacadas')}`}>
             Noticias
           </Link>
         </li>
         <li className="w-full sm:w-auto text-center">
-          <Link to="/#cv" className={`${linkClass} ${getHashClass('#cv')}`}>
+          <Link to="/#cv" onClick={handleLinkClick} className={`${linkClass} ${getHashClass('#cv')}`}>
             Perfil & CV
           </Link>
         </li>
         <li className="w-full sm:w-auto text-center">
-          <Link to="/#certificaciones" className={`${linkClass} ${getHashClass('#certificaciones')}`}>
+          <Link to="/#certificaciones" onClick={handleLinkClick} className={`${linkClass} ${getHashClass('#certificaciones')}`}>
             Certificaciones
           </Link>
         </li>
         <li className="w-full sm:w-auto text-center">
-          <Link to="/#contacto" className={`${linkClass} ${getHashClass('#contacto')}`}>
+          <Link to="/#contacto" onClick={handleLinkClick} className={`${linkClass} ${getHashClass('#contacto')}`}>
             Contacto
           </Link>
         </li>
