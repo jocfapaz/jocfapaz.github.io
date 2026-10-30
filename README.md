@@ -11,19 +11,19 @@ Portafolio profesional desarrollado con React, TypeScript y Vite. El contenido s
 
 ### Página principal
 
-![Página principal del portafolio](docs/screenshots/home-desktop.png)
+![Página principal del portafolio](docs/screenshots/home.png)
 
 ### Proyectos y noticias
 
 | Proyectos | Noticias destacadas |
 | --- | --- |
-| ![Sección de proyectos](docs/screenshots/home-projects.png) | ![Sección de noticias](docs/screenshots/home-news.png) |
+| ![Sección de proyectos](docs/screenshots/proyectos.png) | ![Sección de noticias](docs/screenshots/noticias.png) |
 
 ### Contacto y vista móvil
 
 | Contacto | Móvil |
 | --- | --- |
-| ![Página de contacto](docs/screenshots/contact-desktop.png) | ![Portafolio en móvil](docs/screenshots/home-mobile.png) |
+| ![Página de contacto](docs/screenshots/contact.png) | ![Portafolio en móvil](docs/screenshots/mobile.png) |
 
 ## Características
 
@@ -51,8 +51,6 @@ Portafolio profesional desarrollado con React, TypeScript y Vite. El contenido s
 - Jasmine
 - Testing Library
 - ESLint
-
-> **Decisión de diseño:** el proyecto usa Tailwind CSS 4 en lugar de Bootstrap. La pauta permite Tailwind y se mantienen componentes propios reutilizables (`Card`, `Section`, etc.) en lugar de un framework de componentes externo.
 
 ## Accesibilidad
 
@@ -294,13 +292,6 @@ npm run test:coverage
 ```
 
 Luego abre `coverage/index.html` en el navegador.
-
-## Referencias visuales
-
-Estos enlaces se usaron como inspiración de diseño; el código del portafolio es propio:
-
-- [ThemeWagon · Free Bootstrap 5 Personal Portfolio Website Template](https://themewagon.com/themes/free-bootstrap-5-personal-portfolio-website-template/)
-- [pedrohacker20/Portfolio-Website](https://github.com/pedrohacker20/Portfolio-Website)
 
 ## Autor
 
