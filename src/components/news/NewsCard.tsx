@@ -20,7 +20,7 @@ export default function NewsCard({ title, date, content }: NewsItem) {
       footer={
         <time
           dateTime={date}
-          className="text-xs font-semibold uppercase tracking-wider text-pink-600 dark:text-pink-400"
+          className="text-xs font-semibold uppercase tracking-wider text-pink-700 dark:text-pink-400"
         >
           {formatDate(date)}
         </time>

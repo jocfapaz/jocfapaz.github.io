@@ -66,7 +66,7 @@ export default function Home() {
         className="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors"
       >
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 pb-2 border-b border-slate-100 dark:border-slate-800 flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-pink-500"></span>
+          <span className="w-2.5 h-2.5 rounded-full bg-pink-500" aria-hidden="true"></span>
           Perfil Profesional
         </h2>
         <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm sm:text-base">
@@ -79,7 +79,7 @@ export default function Home() {
         className="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors"
       >
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 pb-2 border-b border-slate-100 dark:border-slate-800 flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-pink-500"></span>
+          <span className="w-2.5 h-2.5 rounded-full bg-pink-500" aria-hidden="true"></span>
           Certificaciones
         </h2>
         <CertificationsList items={data.certifications} />
@@ -90,7 +90,7 @@ export default function Home() {
         className="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors"
       >
         <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 pb-2 border-b border-slate-100 dark:border-slate-800 flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-pink-500"></span>
+          <span className="w-2.5 h-2.5 rounded-full bg-pink-500" aria-hidden="true"></span>
           Contacto
         </h2>
         <ContactInfo contact={data.contact} />

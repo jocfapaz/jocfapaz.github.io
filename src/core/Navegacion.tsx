@@ -1,47 +1,77 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { useTheme } from '../hooks/useTheme';
+
+const linkClass =
+  'block rounded-full px-3 sm:px-4 py-2 text-slate-700 transition-all duration-200 hover:bg-pink-50 hover:text-pink-700 dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-pink-400';
+
+const activeLinkClass = 'bg-pink-50 text-pink-700 dark:bg-slate-800 dark:text-pink-400';
 
 function Navegacion() {
+  const { theme, toggleTheme } = useTheme();
+
   return (
-    <nav className="sticky top-4 z-50 my-6 max-w-fit mx-auto bg-white/80 backdrop-blur-md border border-slate-200 p-1.5 rounded-full shadow-md transition-colors">
-      <ul className="flex items-center gap-1 text-xs sm:text-sm font-medium text-slate-600 dark:text-slate-300">
+    <nav
+      aria-label="Navegación principal"
+      className="sticky top-4 z-50 my-6 mx-auto w-fit max-w-[calc(100vw-2rem)] rounded-2xl border border-slate-200 bg-white/80 p-1.5 shadow-md backdrop-blur-md transition-colors sm:rounded-full"
+    >
+      <ul className="flex flex-wrap items-center justify-center gap-1 text-xs font-medium text-slate-600 dark:text-slate-300 sm:text-sm">
         <li>
-          <Link to="/" className="px-3 sm:px-4 py-2 rounded-full text-slate-700 dark:text-slate-200 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-pink-50 dark:hover:bg-slate-800 transition-all duration-200 block">
+          <NavLink
+            to="/"
+            end
+            className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}
+          >
             Inicio
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <a href="#sobre-mi" className="px-3 sm:px-4 py-2 rounded-full text-slate-700 dark:text-slate-200 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-pink-50 dark:hover:bg-slate-800 transition-all duration-200 block">
+          <Link to="/#sobre-mi" className={linkClass}>
             Sobre mí
-          </a>
-        </li>
-        <li>
-          <a href="#proyectos" className="px-3 sm:px-4 py-2 rounded-full text-slate-700 dark:text-slate-200 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-pink-50 dark:hover:bg-slate-800 transition-all duration-200 block">
-            Proyectos
-          </a>
-        </li>
-        <li>
-          <a href="#noticias-destacadas" className="px-3 sm:px-4 py-2 rounded-full text-slate-700 dark:text-slate-200 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-pink-50 dark:hover:bg-slate-800 transition-all duration-200 block">
-            Noticias
-          </a>
-        </li>
-        <li>
-          <a href="#cv" className="px-3 sm:px-4 py-2 rounded-full text-slate-700 dark:text-slate-200 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-pink-50 dark:hover:bg-slate-800 transition-all duration-200 block">
-            Perfil & CV
-          </a>
-        </li>
-        <li>
-          <a href="#certificaciones" className="px-3 sm:px-4 py-2 rounded-full text-slate-700 dark:text-slate-200 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-pink-50 dark:hover:bg-slate-800 transition-all duration-200 block">
-            Certificaciones
-          </a>
-        </li>
-        <li>
-          <Link to="/contact" className="px-3 sm:px-4 py-2 rounded-full bg-slate-900 dark:bg-pink-600 text-white hover:bg-pink-600 dark:hover:bg-pink-500 transition-all duration-200 block shadow-sm">
-            Contacto
           </Link>
         </li>
         <li>
-          <button id="theme-toggle" type="button" aria-label="Cambiar tema" className="px-3 py-2 rounded-full text-slate-700 dark:text-slate-200 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-pink-50 dark:hover:bg-slate-800 transition-all duration-200 block cursor-pointer">
-            <span id="theme-toggle-icon">🌙 Modo Oscuro</span>
+          <Link to="/#proyectos" className={linkClass}>
+            Proyectos
+          </Link>
+        </li>
+        <li>
+          <Link to="/#noticias-destacadas" className={linkClass}>
+            Noticias
+          </Link>
+        </li>
+        <li>
+          <Link to="/#cv" className={linkClass}>
+            Perfil & CV
+          </Link>
+        </li>
+        <li>
+          <Link to="/#certificaciones" className={linkClass}>
+            Certificaciones
+          </Link>
+        </li>
+        <li>
+          <NavLink
+            to="/contact"
+            className={({ isActive }) =>
+              `block rounded-full px-3 py-2 text-white shadow-sm transition-all duration-200 sm:px-4 ${
+                isActive
+                  ? 'bg-pink-700 dark:bg-pink-700'
+                  : 'bg-slate-900 hover:bg-pink-800 dark:bg-pink-700 dark:hover:bg-pink-800'
+              }`
+            }
+          >
+            Contacto
+          </NavLink>
+        </li>
+        <li>
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro'}
+            aria-pressed={theme === 'dark'}
+            className={`${linkClass} cursor-pointer`}
+          >
+            {theme === 'dark' ? 'Tema claro' : 'Tema oscuro'}
           </button>
         </li>
       </ul>

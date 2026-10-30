@@ -15,7 +15,10 @@ function Footer({ contact }: FooterProps) {
         <p className="text-center sm:text-left">
           © 2026 <span className="text-white font-medium">Josefa Roca</span>.
         </p>
-        <div className="flex gap-6 text-xs">
+        <nav
+          aria-label="Enlaces del pie de página"
+          className="flex flex-wrap items-center justify-center gap-6 text-xs"
+        >
           <a href={`mailto:${email}`} className="hover:text-pink-400 transition-colors">
             Email
           </a>
@@ -23,18 +26,22 @@ function Footer({ contact }: FooterProps) {
             href={github}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-pink-400 transition-colors"
+            className="flex items-center gap-1 hover:text-pink-400 transition-colors"
           >
             GitHub
-            <img src={githubIcon} alt="Github" className="w-6 h-6" />
+            <img
+              src={githubIcon}
+              alt=""
+              aria-hidden="true"
+              width={16}
+              height={16}
+              className="w-4 h-4"
+            />
           </a>
-          <a href="./pets.html" className="hover:text-pink-400 transition-colors">
-            Mascotas
+          <a href="#top" className="hover:text-pink-400 transition-colors">
+            Volver arriba
           </a>
-          <a href="#cv" className="hover:text-pink-400 transition-colors">
-            Volver arriba ↑
-          </a>
-        </div>
+        </nav>
       </div>
     </footer>
   );

@@ -16,7 +16,9 @@ describe('ProjectCard', () => {
 
     expect(screen.getByRole('heading', { name: 'Proyecto completo' })).toBeTruthy();
     expect(screen.getByText('Descripción del proyecto')).toBeTruthy();
-    expect(screen.getByRole('img', { name: 'Proyecto completo' })).toBeTruthy();
+    const image = screen.getByRole('img', { name: 'Proyecto completo' });
+    expect(image.getAttribute('loading')).toBe('lazy');
+    expect(image.getAttribute('decoding')).toBe('async');
     expect(screen.getByText('React')).toBeTruthy();
     expect(screen.getByText('TypeScript')).toBeTruthy();
 

@@ -26,7 +26,7 @@ export default function CertificationsList({ items }: CertificationsListProps) {
               {item.institution} ({item.year})
             </p>
           </div>
-          <span className="text-xs font-semibold text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/50 px-3 py-1 rounded-full border border-pink-100 dark:border-pink-900/50 w-fit">
+          <span className="text-xs font-semibold text-pink-700 dark:text-pink-400 bg-pink-50 dark:bg-pink-950/50 px-3 py-1 rounded-full border border-pink-100 dark:border-pink-900/50 w-fit">
             {item.status}
           </span>
         </div>

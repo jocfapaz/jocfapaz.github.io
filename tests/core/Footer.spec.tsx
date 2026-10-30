@@ -13,6 +13,9 @@ describe('Footer', () => {
     );
     expect(screen.getByRole('link', { name: /GitHub/i }).getAttribute('href')).toBe(contact.github);
     expect(screen.getByRole('link', { name: /GitHub/i }).getAttribute('target')).toBe('_blank');
+    expect(screen.getByRole('navigation', { name: 'Enlaces del pie de página' })).toBeTruthy();
+    expect(screen.getByRole('link', { name: 'Volver arriba' }).getAttribute('href')).toBe('#top');
+    expect(screen.queryByRole('link', { name: /Mascotas/i })).toBeNull();
   });
 
   it('usa los valores por defecto cuando no recibe contacto', () => {

@@ -24,6 +24,7 @@ describe('Contact', () => {
   it('muestra el estado de carga', () => {
     renderContact({ data: null, loading: true, error: null });
 
+    expect(screen.getByRole('status')).toBeTruthy();
     expect(screen.getByText(/Cargando/)).toBeTruthy();
   });
 

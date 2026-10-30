@@ -5,6 +5,8 @@ Portafolio profesional desarrollado con React, TypeScript y Vite. El contenido s
 - **Demo:** [https://jocfapaz.github.io/](https://jocfapaz.github.io/)
 - **Repositorio:** [https://github.com/jocfapaz/jocfapaz.github.io](https://github.com/jocfapaz/jocfapaz.github.io)
 
+> La demo se publica automáticamente con GitHub Actions. En **Settings → Pages**, la fuente debe estar configurada como **GitHub Actions**.
+
 ## Capturas de pantalla
 
 ### Página principal
@@ -31,6 +33,10 @@ Portafolio profesional desarrollado con React, TypeScript y Vite. El contenido s
 - Secciones de inicio con anclas: `#sobre-mi`, `#proyectos`, `#noticias-destacadas`, `#noticias-recientes`, `#cv`, `#certificaciones` y `#contacto`.
 - Noticias separadas en **Destacadas** y **Recientes**, ordenadas por fecha.
 - Diseño responsive con Tailwind CSS.
+- Modo claro/oscuro persistente y navegación accesible entre rutas y anclas.
+- Enlace de salto al contenido, foco visible y soporte para `prefers-reduced-motion`.
+- Fallback `404.html` para conservar las rutas SPA al publicar en GitHub Pages.
+- Imagen de perfil optimizada y carga diferida de imágenes de proyectos.
 - Pruebas unitarias, de integración y de componentes con Karma + Jasmine.
 - Cobertura de código con `karma-coverage` e `istanbul`.
 
@@ -45,6 +51,26 @@ Portafolio profesional desarrollado con React, TypeScript y Vite. El contenido s
 - Jasmine
 - Testing Library
 - ESLint
+
+> **Decisión de diseño:** el proyecto usa Tailwind CSS 4 en lugar de Bootstrap. La pauta permite Tailwind y se mantienen componentes propios reutilizables (`Card`, `Section`, etc.) en lugar de un framework de componentes externo.
+
+## Accesibilidad
+
+- Documento con `lang="es"`, título descriptivo y metadatos de autor/descripción.
+- Enlace “Saltar al contenido”, `<main id="contenido">` y navegación con `aria-label`.
+- Estado activo de las rutas con `NavLink` y `aria-current`.
+- Selector de tema con `aria-pressed`, persistencia en `localStorage` y respeto por `prefers-color-scheme`.
+- Estilos de foco visibles y reducción de animaciones con `prefers-reduced-motion`.
+- Contrastes corregidos en etiquetas, enlaces, fechas y estados.
+- Estados de carga y error anunciados con `role="status"` y `role="alert"`.
+- Emojis e iconos decorativos ocultos para lectores de pantalla.
+
+## Rendimiento
+
+- Imagen de perfil optimizada a 256×256 px y ~12 KB.
+- Imágenes de proyectos con `loading="lazy"` y `decoding="async"`.
+- Eliminación de recursos sin usar (`hero.png`, `react.svg`, `vite.svg`, `icons.svg`).
+- Build de producción minificado con Vite.
 
 ## Requisitos
 
@@ -81,6 +107,22 @@ Para previsualizar el resultado de producción:
 ```bash
 npm run preview
 ```
+
+## Despliegue en GitHub Pages
+
+El despliegue se realiza con el workflow `.github/workflows/deploy.yml`:
+
+1. Cada push a `main` ejecuta lint, typecheck, pruebas y build.
+2. El contenido de `dist/` se publica como artefacto de GitHub Pages.
+3. `public/404.html` redirige las rutas SPA a `index.html` para que `/contact` funcione al recargar.
+
+Configuración necesaria en GitHub:
+
+- Ir a **Settings → Pages**.
+- En **Build and deployment → Source**, seleccionar **GitHub Actions**.
+- Ejecutar el workflow manualmente con **Actions → Deploy to GitHub Pages → Run workflow** si es la primera publicación.
+
+La URL esperada es [https://jocfapaz.github.io/](https://jocfapaz.github.io/).
 
 ## Pruebas
 
@@ -132,10 +174,15 @@ En Windows, `karma.edge.cjs` busca Edge en las rutas habituales de instalación.
 
 ```text
 .
+├── .github/
+│   └── workflows/
+│       └── deploy.yml          # Publicación automática en GitHub Pages
 ├── docs/
 │   ├── legacy/                 # Versión anterior del sitio
 │   └── screenshots/            # Capturas usadas en este README
 ├── public/
+│   ├── 404.html                # Fallback para rutas SPA
+│   └── favicon.svg
 ├── src/
 │   ├── assets/                 # Imágenes y recursos
 │   ├── components/
@@ -147,7 +194,7 @@ En Windows, `karma.edge.cjs` busca Edge en las rutas habituales de instalación.
 │   │   └── ui/                 # Componentes reutilizables
 │   ├── core/                   # Root, Header, Navegación y Footer
 │   ├── data/                   # JSON, tipos y selectores
-│   ├── hooks/                  # usePortfolioData
+│   ├── hooks/                  # usePortfolioData y useTheme
 │   ├── pages/                  # Home y Contact
 │   ├── services/               # Loaders del portafolio
 │   ├── index.css
@@ -247,6 +294,13 @@ npm run test:coverage
 ```
 
 Luego abre `coverage/index.html` en el navegador.
+
+## Referencias visuales
+
+Estos enlaces se usaron como inspiración de diseño; el código del portafolio es propio:
+
+- [ThemeWagon · Free Bootstrap 5 Personal Portfolio Website Template](https://themewagon.com/themes/free-bootstrap-5-personal-portfolio-website-template/)
+- [pedrohacker20/Portfolio-Website](https://github.com/pedrohacker20/Portfolio-Website)
 
 ## Autor
 

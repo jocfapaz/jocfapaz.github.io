@@ -21,7 +21,7 @@ export default function EducationList({ items }: EducationListProps) {
           className="p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/60 rounded-xl"
         >
           <h4 className="font-bold text-slate-900 dark:text-white">{item.title}</h4>
-          <p className="text-sm font-medium text-pink-600 dark:text-pink-400 mt-0.5">
+          <p className="text-sm font-medium text-pink-700 dark:text-pink-400 mt-0.5">
             {item.institution}
           </p>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">{item.period}</p>

@@ -14,6 +14,11 @@ describe('Header', () => {
     expect(screen.getByText(/Santiago, Chile/)).toBeTruthy();
     expect(screen.getByText(/Duoc UC/)).toBeTruthy();
     expect(screen.getByText(/Disponible para prácticas/)).toBeTruthy();
+
+    const image = screen.getByRole('img', { name: portfolioFixture.profile.name });
+    expect(image.getAttribute('width')).toBe('112');
+    expect(image.getAttribute('height')).toBe('112');
+    expect(image.getAttribute('decoding')).toBe('async');
   });
 
   it('muestra valores por defecto cuando no recibe un perfil', () => {

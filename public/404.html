@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirigiendo | Josefa Roca</title>
+    <script>
+      try {
+        sessionStorage.setItem(
+          'redirect',
+          window.location.pathname + window.location.search + window.location.hash,
+        );
+      } catch {
+        window.location.replace('/');
+      }
+      window.location.replace('/');
+    </script>
+  </head>
+  <body>
+    <p>Redirigiendo al portafolio…</p>
+  </body>
+</html>

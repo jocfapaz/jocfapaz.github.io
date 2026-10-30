@@ -20,7 +20,9 @@ export default function AboutMe({ title = "Sobre mí", bio, skills = [] }: About
                 key={skill}
                 className="p-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/60 rounded-lg text-xs sm:text-sm text-slate-700 dark:text-slate-200 font-medium flex items-center gap-2"
               >
-                <span className="text-pink-500 font-bold">✓</span>
+                <span className="text-pink-500 font-bold" aria-hidden="true">
+                  ✓
+                </span>
                 {skill}
               </div>
             ))}

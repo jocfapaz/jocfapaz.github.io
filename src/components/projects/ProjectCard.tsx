@@ -10,6 +10,8 @@ export default function ProjectCard({ title, description, tech = [], image, demo
         <img
           src={image}
           alt={title}
+          loading="lazy"
+          decoding="async"
           className="mt-4 w-full h-40 object-cover rounded-lg border border-slate-200 dark:border-slate-700"
         />
       )}

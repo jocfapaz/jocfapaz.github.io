@@ -12,6 +12,9 @@ function Header({ profile }: HeaderProps) {
         <img
           src={fotoPerfil}
           alt={profile?.name ?? 'Josefa Roca'}
+          width={112}
+          height={112}
+          decoding="async"
           className="w-28 h-28 rounded-full object-cover border-2 border-pink-500 shadow-lg"
         />
         <div className="text-center md:text-left flex-1">
@@ -27,13 +30,16 @@ function Header({ profile }: HeaderProps) {
           </p>
           <div className="mt-4 flex flex-wrap justify-center md:justify-start gap-4 text-xs text-slate-400">
             <span className="flex items-center gap-1">
-              📍 {profile?.location ?? 'Santiago, Chile'}
+              <span aria-hidden="true">📍</span>
+              {profile?.location ?? 'Santiago, Chile'}
             </span>
             <span className="flex items-center gap-1">
-              🎓 {profile?.institution ?? 'Duoc UC'}
+              <span aria-hidden="true">🎓</span>
+              {profile?.institution ?? 'Duoc UC'}
             </span>
             <span className="flex items-center gap-1">
-              💼 {profile?.availability ?? 'Disponible para prácticas'}
+              <span aria-hidden="true">💼</span>
+              {profile?.availability ?? 'Disponible para prácticas'}
             </span>
           </div>
         </div>
