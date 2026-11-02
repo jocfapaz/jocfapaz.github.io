@@ -5,7 +5,10 @@ import Contact from '../../src/pages/Contact';
 import Home from '../../src/pages/Home';
 
 describe('Navegación y estado compartido', () => {
-  it('carga el portafolio y navega a Contacto al hacer clic', async () => {
+  it('carga el portafolio y navega a la sección Contacto al hacer clic', async () => {
+    spyOn(window, 'matchMedia').and.returnValue({ matches: false } as MediaQueryList);
+    const scrollIntoView = spyOn(HTMLElement.prototype, 'scrollIntoView');
+
     render(
       <MemoryRouter initialEntries={['/']}>
         <Routes>
@@ -25,8 +28,10 @@ describe('Navegación y estado compartido', () => {
 
     fireEvent.click(screen.getByRole('link', { name: 'Contacto' }));
 
-    expect(await screen.findByText(/Puedes escribirme a:/)).toBeTruthy();
+    await waitFor(() => expect(scrollIntoView).toHaveBeenCalled());
+
     expect(screen.getByRole('heading', { name: 'Contacto' })).toBeTruthy();
+    expect(screen.getByRole('link', { name: /@/ }).getAttribute('href')).toMatch(/^mailto:/);
   });
 
   it('desplaza la vista a la sección indicada por el hash', async () => {
