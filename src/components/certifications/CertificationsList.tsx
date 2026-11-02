@@ -18,7 +18,7 @@ export default function CertificationsList({ items }: CertificationsListProps) {
       {items.map((item) => (
         <div
           key={item.id}
-          className="p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/60 rounded-xl flex flex-col sm:flex-row justify-between sm:items-center gap-2"
+          className="p-4 bg-emerald-50/80 dark:bg-emerald-900/50 border border-emerald-200/80 dark:border-emerald-800/70 rounded-xl flex flex-col sm:flex-row justify-between sm:items-center gap-2"
         >
           <div>
             <strong className="text-slate-900 dark:text-white font-bold">{item.title}</strong>
@@ -26,7 +26,7 @@ export default function CertificationsList({ items }: CertificationsListProps) {
               {item.institution} ({item.year})
             </p>
           </div>
-          <span className="text-xs font-semibold text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50 px-3 py-1 rounded-full border border-blue-100 dark:border-blue-900/50 w-fit">
+          <span className="text-xs font-semibold text-sky-600 dark:text-sky-300 bg-sky-50 dark:bg-sky-950/50 px-3 py-1 rounded-full border border-sky-200 dark:border-sky-800 w-fit">
             {item.status}
           </span>
         </div>

@@ -18,10 +18,10 @@ export default function EducationList({ items }: EducationListProps) {
       {items.map((item) => (
         <div
           key={item.id}
-          className="p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/60 rounded-xl"
+          className="p-4 bg-emerald-50/80 dark:bg-emerald-900/50 border border-emerald-200/80 dark:border-emerald-800/70 rounded-xl"
         >
           <h4 className="font-bold text-slate-900 dark:text-white">{item.title}</h4>
-          <p className="text-sm font-medium text-blue-700 dark:text-blue-400 mt-0.5">
+          <p className="text-sm font-medium text-sky-600 dark:text-sky-300 mt-0.5">
             {item.institution}
           </p>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">{item.period}</p>

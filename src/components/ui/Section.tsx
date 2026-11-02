@@ -12,10 +12,10 @@ export default function Section({ id, title, subtitle, children, className = '' 
   return (
     <section
       id={id}
-      className={`bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm transition-colors ${className}`}
+      className={`bg-emerald-100/40 dark:bg-emerald-950/60 p-8 rounded-2xl border border-emerald-200 dark:border-emerald-800 shadow-sm transition-colors ${className}`}
     >
-      <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 pb-2 border-b border-slate-100 dark:border-slate-800 flex items-center gap-2">
-        <span className="w-2.5 h-2.5 rounded-full bg-blue-500" aria-hidden="true"></span>
+      <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 pb-2 border-b border-emerald-200 dark:border-emerald-800 flex items-center gap-2">
+        <span className="w-2.5 h-2.5 rounded-full bg-sky-300" aria-hidden="true"></span>
         {title}
       </h2>
       {subtitle && (

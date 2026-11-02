@@ -12,7 +12,7 @@ export default function ProjectCard({ title, description, tech = [], image, demo
           alt={title}
           loading="lazy"
           decoding="async"
-          className="mt-4 w-full h-40 object-cover rounded-lg border border-slate-200 dark:border-slate-700"
+          className="mt-4 w-full h-40 object-cover rounded-lg border border-emerald-200 dark:border-emerald-800"
         />
       )}
       {tech.length > 0 && (
@@ -20,7 +20,7 @@ export default function ProjectCard({ title, description, tech = [], image, demo
           {tech.map((t) => (
             <span
               key={t}
-              className="text-xs font-medium text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900 px-2.5 py-1 rounded-full border border-slate-200 dark:border-slate-700"
+              className="text-xs font-medium text-sky-600 dark:text-sky-200 bg-sky-50 dark:bg-sky-950/50 px-2.5 py-1 rounded-full border border-sky-200 dark:border-sky-800"
             >
               {t}
             </span>
@@ -34,7 +34,7 @@ export default function ProjectCard({ title, description, tech = [], image, demo
               href={demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 px-3 py-1.5 rounded-full transition-colors"
+              className="text-xs font-semibold text-sky-950 bg-sky-300 hover:bg-sky-400 dark:bg-sky-800 dark:text-sky-100 dark:hover:bg-sky-700 px-3 py-1.5 rounded-full transition-colors"
             >
               Ver demo
             </a>
@@ -44,7 +44,7 @@ export default function ProjectCard({ title, description, tech = [], image, demo
               href={repoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-semibold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 px-3 py-1.5 rounded-full transition-colors"
+              className="text-xs font-semibold text-sky-600 dark:text-sky-200 bg-sky-100 dark:bg-sky-900/50 hover:bg-sky-200 dark:hover:bg-sky-800 px-3 py-1.5 rounded-full transition-colors"
             >
               Repositorio
             </a>

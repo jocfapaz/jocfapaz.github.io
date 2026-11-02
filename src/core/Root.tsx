@@ -45,10 +45,10 @@ export default function Root() {
   const portfolio = usePortfolioData();
 
   return (
-    <div id="top" className="min-h-screen bg-slate-50">
+    <div id="top" className="min-h-screen bg-emerald-50 dark:bg-emerald-950">
       <a
         href="#contenido"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-blue-700 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-sky-700 focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
       >
         Saltar al contenido
       </a>

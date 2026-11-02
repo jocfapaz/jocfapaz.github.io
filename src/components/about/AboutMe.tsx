@@ -18,9 +18,9 @@ export default function AboutMe({ title = "Sobre mí", bio, skills = [] }: About
             {skills.map((skill) => (
               <div
                 key={skill}
-                className="p-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200/60 dark:border-slate-700/60 rounded-lg text-xs sm:text-sm text-slate-700 dark:text-slate-200 font-medium flex items-center gap-2"
+                className="p-3 bg-emerald-50/80 dark:bg-emerald-900/50 border border-emerald-200/60 dark:border-emerald-800/70 rounded-lg text-xs sm:text-sm text-slate-700 dark:text-slate-200 font-medium flex items-center gap-2"
               >
-                <span className="text-blue-500 font-bold" aria-hidden="true">
+                <span className="text-sky-500 dark:text-sky-300 font-bold" aria-hidden="true">
                   ✓
                 </span>
                 {skill}

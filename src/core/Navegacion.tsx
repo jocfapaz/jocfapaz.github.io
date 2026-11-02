@@ -3,12 +3,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../hooks/useTheme';
 
 const linkClass =
-  'block rounded-full px-3 sm:px-4 py-2 text-slate-700 transition-all duration-200 hover:bg-blue-50 hover:text-blue-700 dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-blue-400';
+  'block rounded-full px-3 sm:px-4 py-2 text-emerald-800 transition-all duration-200 hover:bg-sky-100 hover:text-sky-800 dark:text-emerald-100 dark:hover:bg-emerald-900 dark:hover:text-sky-300';
 
-const activeLinkClass = 'bg-blue-50 text-blue-700 dark:bg-slate-800 dark:text-blue-400';
+const activeLinkClass = 'bg-sky-100 text-sky-800 dark:bg-emerald-900 dark:text-sky-300';
 
 const themeButtonClass = 
-  'block rounded-full px-3 py-2 text-white shadow-sm transition-all duration-200 sm:px-4 bg-slate-900 hover:bg-blue-800 dark:bg-blue-700 dark:hover:bg-blue-800 cursor-pointer w-full sm:w-auto text-center';
+  'block rounded-full px-3 py-2 text-sky-950 shadow-sm transition-all duration-200 sm:px-4 bg-sky-200 hover:bg-sky-300 dark:bg-emerald-800 dark:text-sky-100 dark:hover:bg-emerald-700 cursor-pointer w-full sm:w-auto text-center';
 
 function Navegacion() {
   const { theme, toggleTheme } = useTheme();
@@ -35,13 +35,13 @@ function Navegacion() {
   return (
     <nav
       aria-label="Navegación principal"
-      className="sticky top-4 z-50 my-6 mx-auto w-11/12 max-w-4xl rounded-2xl border border-slate-200 bg-white/80 dark:bg-slate-900/80 dark:border-slate-700 p-2 shadow-md backdrop-blur-md transition-colors sm:w-fit sm:rounded-full"
+      className="sticky top-4 z-50 my-6 mx-auto w-11/12 max-w-4xl rounded-2xl border border-emerald-300 bg-emerald-100/80 dark:bg-emerald-950/80 dark:border-emerald-800 p-2 shadow-md backdrop-blur-md transition-colors sm:w-fit sm:rounded-full"
     >
       <div className="flex items-center justify-between sm:hidden px-2 py-1">
-        <span className="text-sm font-bold text-slate-800 dark:text-slate-200">Menú</span>
+        <span className="text-sm font-bold text-emerald-950 dark:text-emerald-100">Menú</span>
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none p-1"
+          className="text-emerald-800 dark:text-emerald-200 hover:text-sky-600 dark:hover:text-sky-300 focus:outline-none p-1"
           aria-label="Alternar menú"
         >
           <svg className="w-6 h-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -54,7 +54,7 @@ function Navegacion() {
         </button>
       </div>
 
-      <ul className={`${isMenuOpen ? 'flex' : 'hidden'} sm:flex flex-col sm:flex-row flex-wrap items-center justify-center gap-1 mt-3 sm:mt-0 text-sm font-medium text-slate-600 dark:text-slate-300 w-full sm:w-auto`}>
+      <ul className={`${isMenuOpen ? 'flex' : 'hidden'} sm:flex flex-col sm:flex-row flex-wrap items-center justify-center gap-1 mt-3 sm:mt-0 text-sm font-medium text-emerald-800 dark:text-emerald-200 w-full sm:w-auto`}>
         <li className="w-full sm:w-auto text-center">
           <Link to="/" onClick={handleLinkClick} className={`${linkClass} ${isHomeActive ? activeLinkClass : ''}`}>
             Inicio

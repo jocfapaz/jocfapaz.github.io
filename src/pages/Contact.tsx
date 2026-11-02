@@ -6,8 +6,8 @@ export default function Contact() {
   const { data, loading, error } = useOutletContext<PortfolioState>();
 
   return (
-    <section className="p-6 text-white max-w-4xl mx-auto bg-slate-900 rounded-2xl shadow-xl border border-slate-800">
-      <h2 className="text-2xl font-bold mb-2 text-blue-500">Contacto</h2>
+    <section className="p-6 max-w-4xl mx-auto bg-emerald-100 text-slate-800 rounded-2xl shadow-xl border border-emerald-300 dark:bg-emerald-900 dark:text-white dark:border-emerald-800">
+      <h2 className="text-2xl font-bold mb-2 text-sky-700 dark:text-sky-300">Contacto</h2>
       {loading && (
         <p role="status" aria-live="polite">
           Cargando información de contacto…
@@ -18,7 +18,7 @@ export default function Contact() {
         <div className="space-y-2 text-sm">
           <p>
             Puedes escribirme a:{' '}
-            <a href={`mailto:${data.contact.email}`} className="text-blue-400 underline">
+            <a href={`mailto:${data.contact.email}`} className="text-sky-700 underline dark:text-sky-300">
               {data.contact.email}
             </a>
           </p>
@@ -26,7 +26,7 @@ export default function Contact() {
             Teléfono:{' '}
             <a
               href={`tel:${data.contact.phone.replace(/\s+/g, '')}`}
-              className="text-blue-400 underline"
+              className="text-sky-700 underline dark:text-sky-300"
             >
               {data.contact.phone}
             </a>
@@ -38,7 +38,7 @@ export default function Contact() {
               href={data.contact.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 underline inline-flex items-center gap-1 align-middle"
+              className="text-sky-700 underline dark:text-sky-300 inline-flex items-center gap-1 align-middle"
             >
               {data.contact.github.replace('https://github.com/', '')}
               <img
