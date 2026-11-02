@@ -19,14 +19,14 @@ function Footer({ contact }: FooterProps) {
           aria-label="Enlaces del pie de página"
           className="flex flex-wrap items-center justify-center gap-6 text-xs"
         >
-          <a href={`mailto:${email}`} className="hover:text-pink-400 transition-colors">
+          <a href={`mailto:${email}`} className="hover:text-blue-400 transition-colors">
             Email
           </a>
           <a
             href={github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 hover:text-pink-400 transition-colors"
+            className="flex items-center gap-1 hover:text-blue-400 transition-colors"
           >
             GitHub
             <img

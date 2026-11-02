@@ -60,5 +60,8 @@ describe('Home', () => {
     expect(screen.getByText(certifications[0].title)).toBeTruthy();
     expect(screen.getByRole('heading', { name: 'Contacto' })).toBeTruthy();
     expect(screen.getByText(contact.email)).toBeTruthy();
+    expect(
+      screen.getByRole('link', { name: contact.github.replace('https://github.com/', '') }),
+    ).toBeTruthy();
   });
 });

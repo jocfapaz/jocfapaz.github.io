@@ -34,7 +34,7 @@ export default function ProjectCard({ title, description, tech = [], image, demo
               href={demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-semibold text-white bg-pink-600 hover:bg-pink-500 px-3 py-1.5 rounded-full transition-colors"
+              className="text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 px-3 py-1.5 rounded-full transition-colors"
             >
               Ver demo
             </a>

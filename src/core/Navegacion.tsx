@@ -3,12 +3,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../hooks/useTheme';
 
 const linkClass =
-  'block rounded-full px-3 sm:px-4 py-2 text-slate-700 transition-all duration-200 hover:bg-pink-50 hover:text-pink-700 dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-pink-400';
+  'block rounded-full px-3 sm:px-4 py-2 text-slate-700 transition-all duration-200 hover:bg-blue-50 hover:text-blue-700 dark:text-slate-200 dark:hover:bg-slate-800 dark:hover:text-blue-400';
 
-const activeLinkClass = 'bg-pink-50 text-pink-700 dark:bg-slate-800 dark:text-pink-400';
+const activeLinkClass = 'bg-blue-50 text-blue-700 dark:bg-slate-800 dark:text-blue-400';
 
 const themeButtonClass = 
-  'block rounded-full px-3 py-2 text-white shadow-sm transition-all duration-200 sm:px-4 bg-slate-900 hover:bg-pink-800 dark:bg-pink-700 dark:hover:bg-pink-800 cursor-pointer w-full sm:w-auto text-center';
+  'block rounded-full px-3 py-2 text-white shadow-sm transition-all duration-200 sm:px-4 bg-slate-900 hover:bg-blue-800 dark:bg-blue-700 dark:hover:bg-blue-800 cursor-pointer w-full sm:w-auto text-center';
 
 function Navegacion() {
   const { theme, toggleTheme } = useTheme();
@@ -41,7 +41,7 @@ function Navegacion() {
         <span className="text-sm font-bold text-slate-800 dark:text-slate-200">Menú</span>
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="text-slate-600 dark:text-slate-300 hover:text-pink-600 dark:hover:text-pink-400 focus:outline-none p-1"
+          className="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none p-1"
           aria-label="Alternar menú"
         >
           <svg className="w-6 h-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">

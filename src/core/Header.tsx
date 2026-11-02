@@ -15,13 +15,13 @@ function Header({ profile }: HeaderProps) {
           width={112}
           height={112}
           decoding="async"
-          className="w-28 h-28 rounded-full object-cover border-2 border-pink-500 shadow-lg"
+          className="w-28 h-28 rounded-full object-cover border-2 border-blue-500 shadow-lg"
         />
         <div className="text-center md:text-left flex-1">
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
             {profile?.name ?? 'Josefa Roca Liberón'}
           </h1>
-          <p className="text-pink-400 font-medium text-lg mt-1">
+          <p className="text-blue-400 font-medium text-lg mt-1">
             {profile?.role ?? 'Estudiante de Ingeniería Informática'}
           </p>
           <p className="text-slate-300 text-sm mt-2 max-w-xl leading-relaxed">
