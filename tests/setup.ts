@@ -1,3 +1,5 @@
+/// <reference types="jasmine" />
+
 import { cleanup } from '@testing-library/react';
 
 afterEach(() => {
