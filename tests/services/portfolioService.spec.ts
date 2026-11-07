@@ -1,3 +1,4 @@
+import { ApiError } from '../../src/services/http';
 import {
   loadCertifications,
   loadContact,
@@ -7,11 +8,56 @@ import {
   loadProfile,
   loadProjects,
 } from '../../src/services/portfolioService';
+import { portfolioFixture } from '../fixtures/portfolio';
+
+function jsonResponse(body: unknown, status = 200): Response {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  });
+}
 
 describe('portfolioService', () => {
-  it('carga cada colección del portafolio', async () => {
-    const [profile, education, projects, certifications, contact, news] = await Promise.all([
-      loadProfile(),
+  let fetchSpy: jasmine.Spy;
+
+  beforeEach(() => {
+    fetchSpy = spyOn(globalThis, 'fetch');
+  });
+
+  it('carga el perfil desde /api/profile', async () => {
+    fetchSpy.and.resolveTo(jsonResponse(portfolioFixture.profile));
+
+    const profile = await loadProfile();
+
+    expect(profile).toEqual(portfolioFixture.profile);
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+    expect(String(fetchSpy.calls.mostRecent().args[0])).toMatch(/\/api\/profile$/);
+  });
+
+  it('carga cada colección desde su endpoint', async () => {
+    fetchSpy.and.callFake(async (input: RequestInfo | URL) => {
+      const url = String(input);
+
+      if (url.endsWith('/api/education')) {
+        return jsonResponse(portfolioFixture.education);
+      }
+      if (url.endsWith('/api/projects')) {
+        return jsonResponse(portfolioFixture.projects);
+      }
+      if (url.endsWith('/api/certifications')) {
+        return jsonResponse(portfolioFixture.certifications);
+      }
+      if (url.endsWith('/api/contact')) {
+        return jsonResponse(portfolioFixture.contact);
+      }
+      if (url.endsWith('/api/news')) {
+        return jsonResponse(portfolioFixture.news);
+      }
+
+      throw new Error(`URL inesperada: ${url}`);
+    });
+
+    const [education, projects, certifications, contact, news] = await Promise.all([
       loadEducation(),
       loadProjects(),
       loadCertifications(),
@@ -19,22 +65,52 @@ describe('portfolioService', () => {
       loadNews(),
     ]);
 
-    expect(profile.name).toBeTruthy();
-    expect(education.length).toBeGreaterThan(0);
-    expect(projects.length).toBeGreaterThan(0);
-    expect(certifications.length).toBeGreaterThan(0);
-    expect(contact.email).toBeTruthy();
-    expect(news.length).toBeGreaterThan(0);
+    expect(education).toEqual(portfolioFixture.education);
+    expect(projects).toEqual(portfolioFixture.projects);
+    expect(certifications).toEqual(portfolioFixture.certifications);
+    expect(contact).toEqual(portfolioFixture.contact);
+    expect(news).toEqual(portfolioFixture.news);
+    expect(fetchSpy).toHaveBeenCalledTimes(5);
   });
 
-  it('compone el portafolio completo con todas las colecciones', async () => {
+  it('compone el portafolio con una sola petición a /api/portfolio', async () => {
+    fetchSpy.and.resolveTo(jsonResponse(portfolioFixture));
+
     const portfolio = await loadPortfolio();
 
-    expect(portfolio.profile.name).toBeTruthy();
-    expect(portfolio.education.length).toBeGreaterThan(0);
-    expect(portfolio.projects.length).toBeGreaterThan(0);
-    expect(portfolio.certifications.length).toBeGreaterThan(0);
-    expect(portfolio.contact.email).toBeTruthy();
-    expect(portfolio.news.length).toBeGreaterThan(0);
+    expect(portfolio).toEqual(portfolioFixture);
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+    expect(String(fetchSpy.calls.mostRecent().args[0])).toMatch(/\/api\/portfolio$/);
+  });
+
+  it('lanza ApiError cuando la API responde con un error HTTP', async () => {
+    fetchSpy.and.resolveTo(jsonResponse({ error: 'fallo' }, 500));
+
+    try {
+      await loadPortfolio();
+      fail('La carga debió fallar');
+    } catch (error) {
+      expect(error instanceof ApiError).toBeTrue();
+      expect((error as ApiError).status).toBe(500);
+      expect((error as Error).message).toContain('500');
+    }
+  });
+
+  it('lanza ApiError cuando hay un error de red', async () => {
+    fetchSpy.and.rejectWith(new TypeError('Failed to fetch'));
+
+    await expectAsync(loadNews()).toBeRejectedWithError(ApiError, /No se pudo conectar/);
+  });
+
+  it('lanza ApiError cuando la respuesta no contiene JSON válido', async () => {
+    fetchSpy.and.resolveTo(new Response('no es json', { status: 200 }));
+
+    await expectAsync(loadProfile()).toBeRejectedWithError(ApiError, /JSON inválida/);
+  });
+
+  it('rechaza respuestas con un formato inesperado', async () => {
+    fetchSpy.and.resolveTo(jsonResponse({ profile: null }));
+
+    await expectAsync(loadPortfolio()).toBeRejectedWithError(/formato inesperado/);
   });
 });

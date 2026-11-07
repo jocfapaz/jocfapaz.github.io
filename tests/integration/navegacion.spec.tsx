@@ -3,6 +3,9 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import Root from '../../src/core/Root';
 import Contact from '../../src/pages/Contact';
 import Home from '../../src/pages/Home';
+import { portfolioFixture } from '../fixtures/portfolio';
+
+const loadPortfolioFixture = () => Promise.resolve(portfolioFixture);
 
 describe('Navegación y estado compartido', () => {
   it('carga el portafolio y navega a la sección Contacto al hacer clic', async () => {
@@ -12,7 +15,7 @@ describe('Navegación y estado compartido', () => {
     render(
       <MemoryRouter initialEntries={['/']}>
         <Routes>
-          <Route path="/" element={<Root />}>
+          <Route path="/" element={<Root loader={loadPortfolioFixture} />}>
             <Route index element={<Home />} />
             <Route path="contact" element={<Contact />} />
           </Route>
@@ -41,7 +44,7 @@ describe('Navegación y estado compartido', () => {
     render(
       <MemoryRouter initialEntries={['/']}>
         <Routes>
-          <Route path="/" element={<Root />}>
+          <Route path="/" element={<Root loader={loadPortfolioFixture} />}>
             <Route index element={<Home />} />
             <Route path="contact" element={<Contact />} />
           </Route>

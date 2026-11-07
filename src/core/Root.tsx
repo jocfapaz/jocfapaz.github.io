@@ -4,6 +4,11 @@ import Header from './Header';
 import Navegacion from './Navegacion';
 import Footer from './Footer';
 import { usePortfolioData } from '../hooks/usePortfolioData';
+import type { PortfolioData } from '../data/types';
+
+interface RootProps {
+  loader?: () => Promise<PortfolioData>;
+}
 
 function ScrollManager() {
   const { pathname, hash } = useLocation();
@@ -41,8 +46,8 @@ function ScrollManager() {
   return null;
 }
 
-export default function Root() {
-  const portfolio = usePortfolioData();
+export default function Root({ loader }: RootProps = {}) {
+  const portfolio = usePortfolioData(loader);
 
   return (
     <div id="top" className="min-h-screen bg-emerald-50 dark:bg-emerald-950">
