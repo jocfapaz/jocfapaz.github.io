@@ -13,6 +13,7 @@ dist-ssr
 coverage
 public/api
 *.local
+.env
 
 # Editor directories and files
 .vscode/*
