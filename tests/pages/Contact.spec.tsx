@@ -22,14 +22,14 @@ function renderContact(value: PortfolioState) {
 
 describe('Contact', () => {
   it('muestra el estado de carga', () => {
-    renderContact({ data: null, loading: true, error: null });
+    renderContact({ data: null, loading: true, error: null, reload: () => {} });
 
     expect(screen.getByRole('status')).toBeTruthy();
     expect(screen.getByText(/Cargando/)).toBeTruthy();
   });
 
   it('muestra el estado de error', () => {
-    renderContact({ data: null, loading: false, error: 'Fallo de contacto' });
+    renderContact({ data: null, loading: false, error: 'Fallo de contacto', reload: () => {} });
 
     expect(screen.getByRole('alert')).toBeTruthy();
     expect(screen.getByText(/No se pudo cargar/)).toBeTruthy();
@@ -38,7 +38,7 @@ describe('Contact', () => {
   it('muestra los datos de contacto y sus enlaces', () => {
     const { contact } = portfolioFixture;
 
-    renderContact({ data: portfolioFixture, loading: false, error: null });
+    renderContact({ data: portfolioFixture, loading: false, error: null, reload: () => {} });
 
     expect(screen.getByRole('link', { name: contact.email }).getAttribute('href')).toBe(
       `mailto:${contact.email}`,

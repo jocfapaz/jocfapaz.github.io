@@ -22,21 +22,21 @@ function renderHome(value: PortfolioState) {
 
 describe('Home', () => {
   it('muestra el estado de carga', () => {
-    renderHome({ data: null, loading: true, error: null });
+    renderHome({ data: null, loading: true, error: null, reload: () => {} });
 
     expect(screen.getByRole('status')).toBeTruthy();
     expect(screen.getByText(/Cargando portafolio/)).toBeTruthy();
   });
 
   it('muestra el estado de error cuando no hay datos', () => {
-    renderHome({ data: null, loading: false, error: 'Fallo de carga' });
+    renderHome({ data: null, loading: false, error: 'Fallo de carga', reload: () => {} });
 
     expect(screen.getByRole('alert')).toBeTruthy();
     expect(screen.getByText('Fallo de carga')).toBeTruthy();
   });
 
   it('muestra el mensaje de error por defecto cuando no hay datos ni error', () => {
-    renderHome({ data: null, loading: false, error: null });
+    renderHome({ data: null, loading: false, error: null, reload: () => {} });
 
     expect(screen.getByRole('alert')).toBeTruthy();
     expect(screen.getByText(/Intenta recargar/)).toBeTruthy();
@@ -45,7 +45,7 @@ describe('Home', () => {
   it('renderiza las secciones con los datos del portafolio', () => {
     const { profile, projects, news, certifications, contact, education } = portfolioFixture;
 
-    renderHome({ data: portfolioFixture, loading: false, error: null });
+    renderHome({ data: portfolioFixture, loading: false, error: null, reload: () => {} });
 
     expect(screen.getByRole('heading', { level: 2, name: 'Sobre mí' })).toBeTruthy();
     expect(screen.getAllByText(profile.bio).length).toBeGreaterThan(0);

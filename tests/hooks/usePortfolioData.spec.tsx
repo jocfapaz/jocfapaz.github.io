@@ -1,20 +1,23 @@
-import { act, render, screen } from '@testing-library/react';
-import { usePortfolioData } from '../../src/hooks/usePortfolioData';
+import { act, fireEvent, render, screen } from '@testing-library/react';
+import { usePortfolioData, type PortfolioLoader } from '../../src/hooks/usePortfolioData';
 import type { PortfolioData } from '../../src/data/types';
 import { portfolioFixture } from '../fixtures/portfolio';
 
 interface PortfolioProbeProps {
-  loader: () => Promise<PortfolioData>;
+  loader: PortfolioLoader;
 }
 
 function PortfolioProbe({ loader }: PortfolioProbeProps) {
-  const { data, loading, error } = usePortfolioData(loader);
+  const { data, loading, error, reload } = usePortfolioData(loader);
 
   return (
     <div>
       <span data-testid="loading">{String(loading)}</span>
       <span data-testid="error">{error ?? ''}</span>
       <span data-testid="data">{data ? data.profile.name : ''}</span>
+      <button type="button" onClick={reload}>
+        Recargar
+      </button>
     </div>
   );
 }
@@ -68,6 +71,43 @@ describe('usePortfolioData', () => {
     expect(screen.getByTestId('loading').textContent).toBe('false');
     expect(screen.getByTestId('data').textContent).toBe('');
     expect(screen.getByTestId('error').textContent).toContain('No se pudo cargar');
+  });
+
+  it('recarga los datos al invocar reload', async () => {
+    const loader = jasmine.createSpy('loader').and.resolveTo(portfolioFixture);
+
+    render(<PortfolioProbe loader={loader} />);
+    await flushAsyncUpdates();
+
+    expect(loader).toHaveBeenCalledTimes(1);
+    expect(screen.getByTestId('loading').textContent).toBe('false');
+
+    fireEvent.click(screen.getByRole('button', { name: 'Recargar' }));
+
+    expect(screen.getByTestId('loading').textContent).toBe('true');
+
+    await flushAsyncUpdates();
+
+    expect(loader).toHaveBeenCalledTimes(2);
+    expect(screen.getByTestId('loading').textContent).toBe('false');
+    expect(screen.getByTestId('data').textContent).toBe(portfolioFixture.profile.name);
+  });
+
+  it('cancela la petición al desmontar', () => {
+    let requestSignal: AbortSignal | undefined;
+
+    const loader: PortfolioLoader = (signal) => {
+      requestSignal = signal;
+      return new Promise<PortfolioData>(() => {});
+    };
+
+    const { unmount } = render(<PortfolioProbe loader={loader} />);
+
+    expect(requestSignal?.aborted).toBeFalse();
+
+    unmount();
+
+    expect(requestSignal?.aborted).toBeTrue();
   });
 
   it('no actualiza el DOM si se desmonta antes de resolver', async () => {
