@@ -3,7 +3,7 @@ import githubIcon from '../assets/github.svg';
 import type { PortfolioState } from '../hooks/usePortfolioData';
 
 export default function Contact() {
-  const { data, loading, error } = useOutletContext<PortfolioState>();
+  const { data, loading, error, reload } = useOutletContext<PortfolioState>();
 
   return (
     <section className="p-6 max-w-4xl mx-auto bg-emerald-100 text-slate-800 rounded-2xl shadow-xl border border-emerald-300 dark:bg-emerald-900 dark:text-white dark:border-emerald-800">
@@ -13,7 +13,18 @@ export default function Contact() {
           Cargando información de contacto…
         </p>
       )}
-      {error && <p role="alert">No se pudo cargar la información de contacto.</p>}
+      {error && (
+        <div role="alert" className="space-y-4">
+          <p>No se pudo cargar la información de contacto.</p>
+          <button
+            type="button"
+            onClick={reload}
+            className="inline-flex items-center rounded-lg bg-sky-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-sky-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700 dark:bg-sky-500 dark:text-slate-950 dark:hover:bg-sky-400"
+          >
+            Reintentar
+          </button>
+        </div>
+      )}
       {data && (
         <div className="space-y-2 text-sm">
           <p>

@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter, Outlet, Route, Routes } from 'react-router-dom';
 import Home from '../../src/pages/Home';
 import type { PortfolioState } from '../../src/hooks/usePortfolioData';
@@ -29,10 +29,16 @@ describe('Home', () => {
   });
 
   it('muestra el estado de error cuando no hay datos', () => {
-    renderHome({ data: null, loading: false, error: 'Fallo de carga', reload: () => {} });
+    const reload = jasmine.createSpy('reload');
+
+    renderHome({ data: null, loading: false, error: 'Fallo de carga', reload });
 
     expect(screen.getByRole('alert')).toBeTruthy();
     expect(screen.getByText('Fallo de carga')).toBeTruthy();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Reintentar' }));
+
+    expect(reload).toHaveBeenCalledTimes(1);
   });
 
   it('muestra el mensaje de error por defecto cuando no hay datos ni error', () => {

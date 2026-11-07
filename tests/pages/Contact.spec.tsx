@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter, Outlet, Route, Routes } from 'react-router-dom';
 import Contact from '../../src/pages/Contact';
 import type { PortfolioState } from '../../src/hooks/usePortfolioData';
@@ -29,10 +29,16 @@ describe('Contact', () => {
   });
 
   it('muestra el estado de error', () => {
-    renderContact({ data: null, loading: false, error: 'Fallo de contacto', reload: () => {} });
+    const reload = jasmine.createSpy('reload');
+
+    renderContact({ data: null, loading: false, error: 'Fallo de contacto', reload });
 
     expect(screen.getByRole('alert')).toBeTruthy();
     expect(screen.getByText(/No se pudo cargar/)).toBeTruthy();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Reintentar' }));
+
+    expect(reload).toHaveBeenCalledTimes(1);
   });
 
   it('muestra los datos de contacto y sus enlaces', () => {
