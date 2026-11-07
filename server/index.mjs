@@ -57,10 +57,10 @@ export function createApp({
   });
 
   for (const name of COLLECTIONS) {
-    app.get(`/api/${name}`, sendCollection(name));
+    app.get([`/api/${name}`, `/api/${name}.json`], sendCollection(name));
   }
 
-  app.get('/api/portfolio', async (_request, response, next) => {
+  app.get(['/api/portfolio', '/api/portfolio.json'], async (_request, response, next) => {
     try {
       await wait(delayMs);
       const entries = await Promise.all(

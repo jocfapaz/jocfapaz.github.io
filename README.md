@@ -145,7 +145,9 @@ El frontend consume la API desde `src/services/portfolioService.ts`. Todas las f
 | `GET` | `/api/news` | Noticias. |
 | `GET` | `/api/portfolio` | Objeto agregado con todas las colecciones. |
 
-`loadPortfolio()` realiza una sola petición a `/api/portfolio`; los loaders individuales permiten consultar cada recurso por separado.
+`loadPortfolio()` realiza una sola petición a `/api/portfolio.json`; los loaders individuales permiten consultar cada recurso por separado.
+
+Express acepta tanto `/api/profile` como `/api/profile.json` (y equivalentes). El frontend solicita la variante `.json` para que el mismo código funcione contra la API estática de GitHub Pages.
 
 ### Configuración
 
@@ -158,7 +160,7 @@ El frontend consume la API desde `src/services/portfolioService.ts`. Todas las f
 
 ### API estática para GitHub Pages
 
-GitHub Pages solo publica archivos estáticos. Para mantener la demo funcionando sin backend, `npm run build` ejecuta `scripts/generate-static-api.mjs`, que genera `public/api/*.json` y `public/api/portfolio.json`. Vite los copia a `dist/api`, de modo que el mismo `fetch('/api/...')` funciona igual en local con Express y en producción con archivos JSON.
+GitHub Pages solo publica archivos estáticos. Para mantener la demo funcionando sin backend, `npm run build` ejecuta `scripts/generate-static-api.mjs`, que genera `public/api/*.json` y `public/api/portfolio.json`. Vite los copia a `dist/api`, de modo que el mismo `fetch('/api/profile.json')` funciona igual en local con Express y en producción con archivos JSON.
 
 ## Despliegue en GitHub Pages
 

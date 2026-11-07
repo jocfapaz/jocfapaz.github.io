@@ -46,41 +46,41 @@ function assertPortfolio(value: unknown): PortfolioData {
 }
 
 export function loadProfile(options: RequestOptions = {}): Promise<Profile> {
-  return getJson<unknown>('/profile', options).then((value) =>
+  return getJson<unknown>('/profile.json', options).then((value) =>
     assertRecord<Profile>(value, 'perfil'),
   );
 }
 
 export function loadEducation(options: RequestOptions = {}): Promise<EducationItem[]> {
-  return getJson<unknown>('/education', options).then((value) =>
+  return getJson<unknown>('/education.json', options).then((value) =>
     assertArray<EducationItem>(value, 'educación'),
   );
 }
 
 export function loadProjects(options: RequestOptions = {}): Promise<Project[]> {
-  return getJson<unknown>('/projects', options).then((value) =>
+  return getJson<unknown>('/projects.json', options).then((value) =>
     assertArray<Project>(value, 'proyectos'),
   );
 }
 
 export function loadCertifications(options: RequestOptions = {}): Promise<Certification[]> {
-  return getJson<unknown>('/certifications', options).then((value) =>
+  return getJson<unknown>('/certifications.json', options).then((value) =>
     assertArray<Certification>(value, 'certificaciones'),
   );
 }
 
 export function loadContact(options: RequestOptions = {}): Promise<ContactInfo> {
-  return getJson<unknown>('/contact', options).then((value) =>
+  return getJson<unknown>('/contact.json', options).then((value) =>
     assertRecord<ContactInfo>(value, 'contacto'),
   );
 }
 
 export function loadNews(options: RequestOptions = {}): Promise<NewsItem[]> {
-  return getJson<unknown>('/news', options).then((value) =>
+  return getJson<unknown>('/news.json', options).then((value) =>
     assertArray<NewsItem>(value, 'noticias'),
   );
 }
 
 export function loadPortfolio(options: RequestOptions = {}): Promise<PortfolioData> {
-  return getJson<unknown>('/portfolio', options).then(assertPortfolio);
+  return getJson<unknown>('/portfolio.json', options).then(assertPortfolio);
 }

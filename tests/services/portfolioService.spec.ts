@@ -24,33 +24,33 @@ describe('portfolioService', () => {
     fetchSpy = spyOn(globalThis, 'fetch');
   });
 
-  it('carga el perfil desde /api/profile', async () => {
+  it('carga el perfil desde /api/profile.json', async () => {
     fetchSpy.and.resolveTo(jsonResponse(portfolioFixture.profile));
 
     const profile = await loadProfile();
 
     expect(profile).toEqual(portfolioFixture.profile);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
-    expect(String(fetchSpy.calls.mostRecent().args[0])).toMatch(/\/api\/profile$/);
+    expect(String(fetchSpy.calls.mostRecent().args[0])).toMatch(/\/api\/profile\.json$/);
   });
 
   it('carga cada colección desde su endpoint', async () => {
     fetchSpy.and.callFake(async (input: RequestInfo | URL) => {
       const url = String(input);
 
-      if (url.endsWith('/api/education')) {
+      if (url.endsWith('/api/education.json')) {
         return jsonResponse(portfolioFixture.education);
       }
-      if (url.endsWith('/api/projects')) {
+      if (url.endsWith('/api/projects.json')) {
         return jsonResponse(portfolioFixture.projects);
       }
-      if (url.endsWith('/api/certifications')) {
+      if (url.endsWith('/api/certifications.json')) {
         return jsonResponse(portfolioFixture.certifications);
       }
-      if (url.endsWith('/api/contact')) {
+      if (url.endsWith('/api/contact.json')) {
         return jsonResponse(portfolioFixture.contact);
       }
-      if (url.endsWith('/api/news')) {
+      if (url.endsWith('/api/news.json')) {
         return jsonResponse(portfolioFixture.news);
       }
 
@@ -73,14 +73,14 @@ describe('portfolioService', () => {
     expect(fetchSpy).toHaveBeenCalledTimes(5);
   });
 
-  it('compone el portafolio con una sola petición a /api/portfolio', async () => {
+  it('compone el portafolio con una sola petición a /api/portfolio.json', async () => {
     fetchSpy.and.resolveTo(jsonResponse(portfolioFixture));
 
     const portfolio = await loadPortfolio();
 
     expect(portfolio).toEqual(portfolioFixture);
     expect(fetchSpy).toHaveBeenCalledTimes(1);
-    expect(String(fetchSpy.calls.mostRecent().args[0])).toMatch(/\/api\/portfolio$/);
+    expect(String(fetchSpy.calls.mostRecent().args[0])).toMatch(/\/api\/portfolio\.json$/);
   });
 
   it('lanza ApiError cuando la API responde con un error HTTP', async () => {

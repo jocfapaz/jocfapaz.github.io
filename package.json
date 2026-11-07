@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently -k -n API,WEB -c yellow,cyan \"npm:dev:api\" \"npm:dev:web\"",
-    "dev:web": "vite",
+    "dev:web": "vite --mode static",
     "dev:api": "node server/index.mjs",
     "start": "node server/index.mjs",
     "predev:web": "node scripts/generate-static-api.mjs",
