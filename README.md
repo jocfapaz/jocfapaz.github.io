@@ -5,25 +5,24 @@ Portafolio profesional desarrollado con React, TypeScript y Vite. El contenido s
 - **Demo:** [https://jocfapaz.github.io/](https://jocfapaz.github.io/)
 - **Repositorio:** [https://github.com/jocfapaz/jocfapaz.github.io](https://github.com/jocfapaz/jocfapaz.github.io)
 
-> La demo se publica automáticamente con GitHub Actions. En **Settings → Pages**, la fuente debe estar configurada como **GitHub Actions**.
 
 ## Capturas de pantalla
 
 ### Página principal
 
-![Página principal del portafolio](docs/screenshots/home.png)
+![Página principal del portafolio](docs/screenshots/inicio.png)
 
 ### Proyectos y noticias
 
 | Proyectos | Noticias destacadas |
 | --- | --- |
-| ![Sección de proyectos](docs/screenshots/proyectos.png) | ![Sección de noticias](docs/screenshots/noticias.png) |
+| ![Sección de proyecto](docs/screenshots/proyecto.png) | ![Sección de noticias](docs/screenshots/noticias.png) |
 
 ### Contacto y vista móvil
 
 | Contacto | Móvil |
 | --- | --- |
-| ![Página de contacto](docs/screenshots/contacto.png) | ![Portafolio en móvil](docs/screenshots/mobile.png) |
+| ![Página de contacto](docs/screenshots/contact.png) | ![Portafolio en móvil](docs/screenshots/celu.png) |
 
 ## Características
 
@@ -72,7 +71,6 @@ Portafolio profesional desarrollado con React, TypeScript y Vite. El contenido s
 
 - Imagen de perfil optimizada a 256×256 px y ~12 KB.
 - Imágenes de proyectos con `loading="lazy"` y `decoding="async"`.
-- Eliminación de recursos sin usar (`hero.png`, `react.svg`, `vite.svg`, `icons.svg`).
 - Build de producción minificado con Vite.
 
 ## Requisitos
@@ -88,13 +86,6 @@ git clone https://github.com/jocfapaz/jocfapaz.github.io.git
 cd jocfapaz.github.io
 npm install
 ```
-
-Opcionalmente, copia la configuración de ejemplo:
-
-```powershell
-Copy-Item .env.example .env
-```
-
 ## Ejecución
 
 Inicia la API y el frontend en un solo comando:
@@ -171,11 +162,6 @@ El despliegue se realiza con el workflow `.github/workflows/deploy.yml`:
 3. `public/404.html` redirige las rutas SPA a `index.html` para que `/contact` funcione al recargar.
 4. No se despliega Express: en producción el frontend consulta los JSON estáticos de `/api`.
 
-Configuración necesaria en GitHub:
-
-- Ir a **Settings → Pages**.
-- En **Build and deployment → Source**, seleccionar **GitHub Actions**.
-- Ejecutar el workflow manualmente con **Actions → Deploy to GitHub Pages → Run workflow** si es la primera publicación.
 
 La URL esperada es [https://jocfapaz.github.io/](https://jocfapaz.github.io/).
 
@@ -216,15 +202,6 @@ Los umbrales configurados son:
 - Funciones: 80%
 - Líneas: 80%
 
-Si Chrome o Edge no se detectan automáticamente, define la ruta del ejecutable:
-
-```powershell
-$env:CHROME_BIN = "C:\ruta\a\chrome.exe"
-$env:EDGE_BIN = "C:\ruta\a\msedge.exe"
-```
-
-En Windows, `karma.edge.cjs` busca Edge en las rutas habituales de instalación.
-
 ## Estructura del proyecto
 
 ```text
@@ -238,7 +215,7 @@ En Windows, `karma.edge.cjs` busca Edge en las rutas habituales de instalación.
 ├── public/
 │   ├── api/                    # API estática generada para GitHub Pages
 │   ├── 404.html                # Fallback para rutas SPA
-│   └── favicon.svg
+│ 
 ├── scripts/
 │   └── generate-static-api.mjs # Genera public/api desde src/data
 ├── server/
