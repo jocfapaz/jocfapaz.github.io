@@ -34,9 +34,6 @@ export function usePortfolioData(loader: PortfolioLoader = defaultLoader): Portf
     const controller = new AbortController();
     let active = true;
 
-    setLoading(true);
-    setError(null);
-
     loaderRef.current(controller.signal)
       .then((portfolio) => {
         if (active) {
@@ -61,6 +58,8 @@ export function usePortfolioData(loader: PortfolioLoader = defaultLoader): Portf
   }, [attempt]);
 
   const reload = useCallback(() => {
+    setLoading(true);
+    setError(null);
     setAttempt((current) => current + 1);
   }, []);
 
