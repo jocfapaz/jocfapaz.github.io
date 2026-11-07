@@ -1,6 +1,6 @@
 # Portafolio personal · Josefa Roca Liberón
 
-Portafolio profesional desarrollado con React, TypeScript y Vite. El contenido se carga desde archivos JSON, incluye navegación entre secciones, vista de contacto y una suite de pruebas con Karma + Jasmine.
+Portafolio profesional desarrollado con React, TypeScript y Vite. El contenido se expone mediante una API REST y se consume desde una capa de servicios separada de la interfaz, incluye navegación entre secciones, vista de contacto y una suite de pruebas con Karma + Jasmine.
 
 - **Demo:** [https://jocfapaz.github.io/](https://jocfapaz.github.io/)
 - **Repositorio:** [https://github.com/jocfapaz/jocfapaz.github.io](https://github.com/jocfapaz/jocfapaz.github.io)
@@ -27,6 +27,10 @@ Portafolio profesional desarrollado con React, TypeScript y Vite. El contenido s
 
 ## Características
 
+- API REST con Express: perfil, educación, proyectos, certificaciones, contacto y noticias.
+- Consumo HTTP mediante `fetch` desde `src/services/http.ts` y `src/services/portfolioService.ts`.
+- Estado de carga, mensaje de error y acción de reintento en la interfaz.
+- En GitHub Pages se publica una API estática generada en `/api`, sin necesidad de servidor.
 - Contenido centralizado en JSON: perfil, educación, proyectos, certificaciones, contacto y noticias.
 - Carga de datos mediante `usePortfolioData` y loaders asíncronos.
 - Navegación con React Router: `/` y `/contact`.
@@ -45,6 +49,7 @@ Portafolio profesional desarrollado con React, TypeScript y Vite. El contenido s
 - React 19
 - TypeScript
 - Vite 8
+- Express
 - React Router
 - Tailwind CSS 4
 - Karma
@@ -84,15 +89,32 @@ cd jocfapaz.github.io
 npm install
 ```
 
+Opcionalmente, copia la configuración de ejemplo:
+
+```powershell
+Copy-Item .env.example .env
+```
+
 ## Ejecución
 
-Inicia el servidor de desarrollo:
+Inicia la API y el frontend en un solo comando:
 
 ```bash
 npm run dev
 ```
 
-Vite mostrará la URL local, normalmente `http://localhost:5173`.
+- API REST: `http://localhost:3001/api`
+- Frontend: `http://localhost:5173`
+- Vite redirige las peticiones `/api` al backend Express.
+
+Comandos disponibles:
+
+| Comando | Descripción |
+| --- | --- |
+| `npm run dev` | Ejecuta la API Express y Vite juntos. |
+| `npm run dev:api` | Ejecuta solo la API Express. |
+| `npm run dev:web` | Ejecuta solo Vite con la API estática generada. |
+| `npm run api:static` | Genera la API estática en `public/api/`. |
 
 Para generar la versión de producción:
 
@@ -106,13 +128,46 @@ Para previsualizar el resultado de producción:
 npm run preview
 ```
 
+## API REST
+
+El frontend consume la API desde `src/services/portfolioService.ts`. Todas las funciones reciben una señal opcional para cancelar la petición y usan un cliente HTTP común con timeout y errores tipados.
+
+### Endpoints
+
+| Método | Ruta | Descripción |
+| --- | --- | --- |
+| `GET` | `/api/health` | Estado del servicio. |
+| `GET` | `/api/profile` | Perfil profesional. |
+| `GET` | `/api/education` | Formación académica. |
+| `GET` | `/api/projects` | Proyectos. |
+| `GET` | `/api/certifications` | Certificaciones. |
+| `GET` | `/api/contact` | Información de contacto. |
+| `GET` | `/api/news` | Noticias. |
+| `GET` | `/api/portfolio` | Objeto agregado con todas las colecciones. |
+
+`loadPortfolio()` realiza una sola petición a `/api/portfolio`; los loaders individuales permiten consultar cada recurso por separado.
+
+### Configuración
+
+| Variable | Valor por defecto | Descripción |
+| --- | --- | --- |
+| `VITE_API_URL` | `/api` | URL base del API REST. |
+| `API_PORT` | `3001` | Puerto del backend Express. |
+| `CORS_ORIGIN` | cualquiera | Origen permitido por CORS. |
+| `API_DELAY_MS` | `0` | Retardo artificial para probar el estado de carga. |
+
+### API estática para GitHub Pages
+
+GitHub Pages solo publica archivos estáticos. Para mantener la demo funcionando sin backend, `npm run build` ejecuta `scripts/generate-static-api.mjs`, que genera `public/api/*.json` y `public/api/portfolio.json`. Vite los copia a `dist/api`, de modo que el mismo `fetch('/api/...')` funciona igual en local con Express y en producción con archivos JSON.
+
 ## Despliegue en GitHub Pages
 
 El despliegue se realiza con el workflow `.github/workflows/deploy.yml`:
 
 1. Cada push a `main` ejecuta lint, typecheck, pruebas y build.
-2. El contenido de `dist/` se publica como artefacto de GitHub Pages.
+2. El build genera la API estática en `dist/api/` y el contenido de `dist/` se publica como artefacto de GitHub Pages.
 3. `public/404.html` redirige las rutas SPA a `index.html` para que `/contact` funcione al recargar.
+4. No se despliega Express: en producción el frontend consulta los JSON estáticos de `/api`.
 
 Configuración necesaria en GitHub:
 
@@ -179,8 +234,13 @@ En Windows, `karma.edge.cjs` busca Edge en las rutas habituales de instalación.
 │   ├── legacy/                 # Versión anterior del sitio
 │   └── screenshots/            # Capturas usadas en este README
 ├── public/
+│   ├── api/                    # API estática generada para GitHub Pages
 │   ├── 404.html                # Fallback para rutas SPA
 │   └── favicon.svg
+├── scripts/
+│   └── generate-static-api.mjs # Genera public/api desde src/data
+├── server/
+│   └── index.mjs               # API REST con Express
 ├── src/
 │   ├── assets/                 # Imágenes y recursos
 │   ├── components/
@@ -194,7 +254,7 @@ En Windows, `karma.edge.cjs` busca Edge en las rutas habituales de instalación.
 │   ├── data/                   # JSON, tipos y selectores
 │   ├── hooks/                  # usePortfolioData y useTheme
 │   ├── pages/                  # Home y Contact
-│   ├── services/               # Loaders del portafolio
+│   ├── services/               # Cliente HTTP y loaders del portafolio
 │   ├── index.css
 │   └── main.tsx
 ├── tests/
@@ -217,7 +277,7 @@ En Windows, `karma.edge.cjs` busca Edge en las rutas habituales de instalación.
 
 ## Cómo actualizar el contenido
 
-Todo el contenido del portafolio vive en `src/data/`.
+Todo el contenido del portafolio vive en `src/data/`. La API Express lee esos archivos directamente; para regenerar la copia estática que usan `dev:web` y GitHub Pages ejecuta `npm run api:static` (el build también lo hace automáticamente).
 
 ### Agregar un proyecto
 
